@@ -2,7 +2,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, run the following commands to setup the server properly
+
+```bash
+npm install
+# or
+yarn install
+
+#then, to install husky for this project
+yarn install husky
+```
+
+Now, to run the development server:
 
 ```bash
 npm run dev
