@@ -9,6 +9,7 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "build-static-webapp": "expo build:web",
     "create-component": "node scripts/component/index"
   },
   "dependencies": {
