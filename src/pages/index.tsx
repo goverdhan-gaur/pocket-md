@@ -1,5 +1,9 @@
-import HomePage from '@/components/Home/Container'
+import { HomePage } from '@/components/HomePage/HomePage'
 
 export default function Home() {
-  return <HomePage />
+  return (
+    <>
+      <HomePage title="Test" />
+    </>
+  )
 }

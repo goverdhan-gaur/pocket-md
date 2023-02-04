@@ -6,30 +6,48 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "create-component": "node scripts/component/index"
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "@types/hoist-non-react-statics": "^3.3.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "@typescript-eslint/parser": "^5.50.0",
+    "capitalize-first-letter": "^1.0.0",
     "eslint-config-next": "13.1.6",
     "eslint-import-resolver-typescript": "^3.5.3",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "storybook": "^6.5.16",
     "styled-components": "^5.3.6",
     "typescript": "*"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "babel-loader": "^8.3.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "netlify-cli": "^12.10.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "webpack": "^5.75.0"
   },
   "resolutions": {
     "styled-components": "^5"
