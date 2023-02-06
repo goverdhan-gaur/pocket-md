@@ -1,4 +1,4 @@
-const contentful = require('contentful')
+import contentful from 'contentful'
 
 const client = contentful.createClient({
   space: 'h94z2ctd658u',
