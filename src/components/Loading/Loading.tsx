@@ -20,7 +20,7 @@ const item: Variants = {
     },
   }),
 }
-export const Loading: FunctionComponent<Props> = (props) => {
+export const Loading: FunctionComponent<Props> = () => {
   return (
     <Styled.wrapper>
       <Styled.left variants={item} custom={1} />

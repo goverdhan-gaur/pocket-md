@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { motion } from 'framer-motion'
 export const wrapper = styled.div`
   margin: 4rem auto;

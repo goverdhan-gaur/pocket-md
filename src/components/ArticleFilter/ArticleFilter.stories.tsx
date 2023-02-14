@@ -11,6 +11,8 @@ export const Primary = () => (
   <ArticleFilter
     filters={['All', 'One']}
     activeFilter="All"
-    onFilterClick={() => {}}
+    onFilterClick={() => {
+      null
+    }}
   ></ArticleFilter>
 )
