@@ -73,7 +73,7 @@ export default function Home(props: HomeProps) {
         setFilteredArticles(filterArticles(articles, filter))
       }
       setHasLoaded(true)
-    }, 5000)
+    }, 500)
 
     return () => {
       clearTimeout(delay)

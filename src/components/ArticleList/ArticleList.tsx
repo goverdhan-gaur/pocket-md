@@ -9,11 +9,11 @@ export const ArticleList: React.FC<HomeProps> = (props) => {
   return (
     <>
       <Styled.wrapper>
-        {/* {articles.map((article) => {
+        {articles.map((article) => {
           return (
             <ArticleListItem key={`asdads${Math.random()}`} article={article} />
           )
-        })} */}
+        })}
         <Loading />
       </Styled.wrapper>
     </>
