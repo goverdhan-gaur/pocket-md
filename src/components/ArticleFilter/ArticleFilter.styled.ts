@@ -7,7 +7,6 @@ interface filterListItemProps {
 }
 
 export const wrapper = styled.div`
-    // padding: 2rem;
     border-bottom: 1px solid black;
     position: sticky;
     top: 0;

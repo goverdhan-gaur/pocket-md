@@ -25,7 +25,7 @@ export const ArticleFilter: FunctionComponent<Props> = ({
             key={filter}
             id={filter}
             onClick={filterClickHandler}
-            isActive={activeFilter === filter}
+            isActive={Boolean(activeFilter === filter)}
           >
             {filter}
           </Styled.filterListItem>
