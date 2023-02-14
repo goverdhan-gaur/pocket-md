@@ -1,8 +1,8 @@
 export const aspectRatioContainer = (ratio: string) => {
-    const ratios = ratio.split(":");
+    const ratios = ratio.split(':')
     enum Dimension {
         width = +ratios[0],
-        height = +ratios[1]
+        height = +ratios[1],
     }
 
     return `

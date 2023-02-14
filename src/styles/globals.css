@@ -13,4 +13,5 @@
 body {
   font-family: 'Roboto Slab', serif;
   background-color: rgb(236, 229, 215);
+  scroll-behavior: smooth;
 }
