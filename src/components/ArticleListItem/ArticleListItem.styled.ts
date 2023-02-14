@@ -3,6 +3,7 @@ import { px } from '@/mixins/getRemFontSize';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { mediaQuery } from '@/mixins/mediaQuery';
 
 export const wrapper = styled.div`
     padding: 2rem 0 3rem;
@@ -10,10 +11,13 @@ export const wrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 3rem;
+    ${mediaQuery('Mobile', `
+        grid-template-columns: 1fr;
+    `)}
 `;
 
 export const imageContainer = styled.div`
-    ${aspectRatioContainer("1:1")}
+    ${aspectRatioContainer("4:3")}
 `;
 
 export const image = styled(Image)`
@@ -23,11 +27,18 @@ export const image = styled(Image)`
 export const title = styled.h2`
     ${px(36)}
     font-weight: 500;
+    ${mediaQuery('Mobile', `
+        ${px(98)}
+    `)}
 `;
 
 export const description = styled.p`
     margin: 1.54rem 0;
     ${px(20)}
+    ${mediaQuery('Mobile', `
+        margin: 3rem 0;
+        ${px(56)}
+    `)}
 `;
 
 export const link = styled(Link)`
@@ -61,6 +72,14 @@ export const link = styled(Link)`
         transform: scaleX(1);
         transform-origin: left;
     }
+
+    ${mediaQuery('Mobile', `
+        &:after {
+            transition: unset;
+        }
+
+        ${px(48)}
+    `)}
 `;
 
 export const meta = styled.div`
