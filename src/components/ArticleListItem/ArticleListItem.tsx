@@ -15,19 +15,18 @@ export const ArticleListItem: FunctionComponent<Props> = (props) => {
   }
   return (
     <Styled.wrapper>
-      <Styled.image>
-        <Image
+      <Styled.imageContainer>
+        <Styled.image
           loader={myLoader}
           src="me.png"
           alt="Picture of the author"
-          width={500}
-          height={500}
+          layout="fill"
         />
-      </Styled.image>
+      </Styled.imageContainer>
       <Styled.meta>
         <Styled.title>{article.title}</Styled.title>
-        <Styled.description></Styled.description>
-        <Styled.link href="/"></Styled.link>
+        <Styled.description>{article.text}</Styled.description>
+        <Styled.link href="/">Read the article</Styled.link>
       </Styled.meta>
     </Styled.wrapper>
   )
