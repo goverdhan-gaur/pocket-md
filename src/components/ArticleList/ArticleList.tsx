@@ -4,8 +4,12 @@ import { HomeProps } from '@/pages'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import { Loading } from '../Loading/Loading'
 
-export const ArticleList: React.FC<HomeProps> = (props) => {
-  const { articles } = props
+interface Props extends HomeProps {
+  hasLoaded: boolean
+}
+
+export const ArticleList: React.FC<Props> = (props) => {
+  const { articles, hasLoaded } = props
   return (
     <>
       <Styled.wrapper>
@@ -14,7 +18,7 @@ export const ArticleList: React.FC<HomeProps> = (props) => {
             <ArticleListItem key={`asdads${Math.random()}`} article={article} />
           )
         })}
-        <Loading />
+        {!hasLoaded && <Loading />}
       </Styled.wrapper>
     </>
   )
