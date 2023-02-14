@@ -59,7 +59,7 @@ export default function Home(props: HomeProps) {
         filters={filters}
         activeFilter={filter}
       />
-      <ArticleList articles={filteredArticles} />{' '}
+      <ArticleList articles={filteredArticles} />
     </>
   )
 }
