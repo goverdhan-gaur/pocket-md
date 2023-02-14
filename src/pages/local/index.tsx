@@ -1,4 +1,4 @@
-import { client } from '@/utils/apollo'
+import { localClient as client } from '@/utils/apollo'
 import {
   firstPageArticles,
   retrievePageArticles,
@@ -23,6 +23,7 @@ export interface Article {
 
 export interface HomeProps {
   articles: Article[]
+  page: string
 }
 
 const getTypes = (articles: Article[]) => {
@@ -98,6 +99,7 @@ export async function getServerSideProps() {
   return {
     props: {
       articles: data.firstPageArticles,
+      page: 'local',
     },
   }
 }

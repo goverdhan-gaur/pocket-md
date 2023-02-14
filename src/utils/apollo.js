@@ -1,8 +1,18 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 
-const client = new ApolloClient({
+const localClient = new ApolloClient({
   link: new HttpLink({ uri: 'https://graphql-api.herokuapp.com/graphql' }),
+  headers: { 'Content-Type': 'application/JSON' },
   cache: new InMemoryCache(),
 })
 
-export default client
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: 'https://powerful-beyond-01021.herokuapp.com/graphql',
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'no-cors',
+  }),
+  cache: new InMemoryCache(),
+})
+
+export { client, localClient }
