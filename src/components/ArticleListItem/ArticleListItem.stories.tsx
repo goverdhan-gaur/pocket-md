@@ -7,4 +7,4 @@ export default {
   component: ArticleListItem,
 } as ComponentMeta<typeof ArticleListItem>
 
-export const Primary = () => <ArticleListItem article={article} />
+export const Primary = () => <></>

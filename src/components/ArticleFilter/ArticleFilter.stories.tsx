@@ -7,4 +7,10 @@ export default {
   component: ArticleFilter,
 } as ComponentMeta<typeof ArticleFilter>
 
-export const Primary = () => <ArticleFilter title="test" />
+export const Primary = () => (
+  <ArticleFilter
+    filters={['All', 'One']}
+    activeFilter="All"
+    onFilterClick={() => {}}
+  ></ArticleFilter>
+)

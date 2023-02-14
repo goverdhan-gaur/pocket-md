@@ -7,4 +7,4 @@ export default {
   component: ArticleList,
 } as ComponentMeta<typeof ArticleList>
 
-export const Primary = () => <ArticleList title="test" />
+export const Primary = () => <></>

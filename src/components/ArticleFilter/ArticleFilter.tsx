@@ -4,7 +4,7 @@ import * as Styled from './ArticleFilter.styled'
 interface Props {
   filters: string[]
   activeFilter: string
-  onFilterClick: Function
+  onFilterClick: (id: string) => void
 }
 
 export const ArticleFilter: FunctionComponent<Props> = ({

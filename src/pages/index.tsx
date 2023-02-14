@@ -1,9 +1,14 @@
-import { gql } from '@apollo/client'
 import client from '@/utils/apollo'
-import { firstPageArticles } from '@/queries/firstPageArticles'
+import {
+  firstPageArticles,
+  retrievePageArticles,
+} from '@/queries/firstPageArticles'
 import { ArticleList } from '@/components/ArticleList/ArticleList'
 import { ArticleFilter } from '@/components/ArticleFilter/ArticleFilter'
 import { useEffect, useState } from 'react'
+import { useLoadMore } from '@/hooks/useLoadMore'
+import { Container } from '@/components/Container/Container'
+import { Loading } from '@/components/Loading/Loading'
 
 export interface Article {
   __typename: string
@@ -22,35 +27,58 @@ export interface HomeProps {
   articles: Article[]
 }
 
-const getTypes = (articles: any) => {
+const getTypes = (articles: Article[]) => {
   const types: string[] = ['All']
-  articles.forEach((_item: Article) => {
-    !types.includes(_item.type) && types.push(_item.type)
+  articles.forEach((item: Article) => {
+    !types.includes(item.type) && types.push(item.type)
   })
   return types
 }
 
 export default function Home(props: HomeProps) {
-  const { articles } = props
+  const [articles, setArticles] = useState<Article[]>(props.articles)
   const filters: string[] = getTypes(articles)
 
   const [filter, setFilter] = useState<string>('All')
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([])
+  const [hasLoaded, setHasLoaded] = useState<boolean>(false)
+  const { data, loading } = useLoadMore({
+    query: retrievePageArticles,
+  })
+
+  const filterArticles = (articles: Article[], filter: string) => {
+    return articles.filter(
+      (article: { type: string }) => article.type === filter
+    )
+  }
+  // To reset the scroll
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual'
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    let articlesFiltered: Article[] = []
-    if (filter === 'All') {
-      setFilteredArticles(articles)
-    } else {
-      articlesFiltered = articles.filter((article) => article.type === filter)
-      console.log(articlesFiltered)
-      setFilteredArticles(articlesFiltered)
-    }
+    setArticles((prev) => {
+      const oldArray = prev
+      const updatedArray = [...oldArray, ...data]
+      return updatedArray
+    })
+    loading && setHasLoaded(false)
+  }, [data, loading]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      if (filter === 'All') {
+        setFilteredArticles(articles)
+      } else {
+        setFilteredArticles(filterArticles(articles, filter))
+      }
+      setHasLoaded(true)
+    }, 5000)
 
     return () => {
-      //
+      clearTimeout(delay)
     }
-  }, [filter])
+  }, [filter, articles]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -66,9 +94,7 @@ export default function Home(props: HomeProps) {
 
 export async function getServerSideProps() {
   const { data } = await client.query({
-    query: gql`
-      ${firstPageArticles}
-    `,
+    query: firstPageArticles,
   })
 
   return {
