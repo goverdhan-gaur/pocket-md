@@ -1,12 +1,9 @@
 import { client } from '@/utils/apollo'
-import {
-  firstPageArticles,
-  retrievePageArticles,
-} from '@/queries/firstPageArticles'
+import { firstPageArticles } from '@/queries/firstPageArticles'
 import { ArticleList } from '@/components/ArticleList/ArticleList'
 import { ArticleFilter } from '@/components/ArticleFilter/ArticleFilter'
 import { useEffect, useState } from 'react'
-import { useLoadMore } from '@/hooks/useLoadMore'
+import { useLoadMoreAxios } from '@/hooks/useLoadMoreAxios'
 
 export interface Article {
   __typename: string
@@ -39,17 +36,15 @@ export default function Home(props: HomeProps) {
 
   const [filter, setFilter] = useState<string>('All')
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([])
-  const [hasLoaded, setHasLoaded] = useState<boolean>(false)
-  const { data, loading } = useLoadMore({
-    query: retrievePageArticles,
-  })
+  const [hasLoaded, setHasLoaded] = useState<boolean>(true)
+  const { data, loading } = useLoadMoreAxios()
 
   const filterArticles = (articles: Article[], filter: string) => {
     return articles.filter(
       (article: { type: string }) => article.type === filter
     )
   }
-  // To reset the scroll
+
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -64,17 +59,16 @@ export default function Home(props: HomeProps) {
   }, [data, loading]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const delay = setTimeout(() => {
-      if (filter === 'All') {
-        setFilteredArticles(articles)
-      } else {
-        setFilteredArticles(filterArticles(articles, filter))
-      }
-      setHasLoaded(true)
-    }, 500)
+    console.log(articles.length)
+    if (filter === 'All') {
+      setFilteredArticles(articles)
+    } else {
+      setFilteredArticles(filterArticles(articles, filter))
+    }
+    setHasLoaded(true)
 
     return () => {
-      clearTimeout(delay)
+      //
     }
   }, [filter, articles]) // eslint-disable-line react-hooks/exhaustive-deps
 

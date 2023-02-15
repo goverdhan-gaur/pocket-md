@@ -13,7 +13,7 @@ const item: Variants = {
   final: (i) => ({
     scale: 0.5,
     transition: {
-      duration: 0.7,
+      duration: 0.5,
       repeat: Infinity,
       repeatType: 'reverse',
       delay: i * 0.3,
@@ -23,9 +23,24 @@ const item: Variants = {
 export const Loading: FunctionComponent<Props> = () => {
   return (
     <Styled.wrapper>
-      <Styled.left variants={item} custom={1} />
-      <Styled.center variants={item} custom={2} />
-      <Styled.right variants={item} custom={3} />
+      <Styled.left
+        variants={item}
+        initial="initial"
+        animate="final"
+        custom={1}
+      />
+      <Styled.center
+        variants={item}
+        initial="initial"
+        animate="final"
+        custom={2}
+      />
+      <Styled.right
+        variants={item}
+        initial="initial"
+        animate="final"
+        custom={3}
+      />
     </Styled.wrapper>
   )
 }

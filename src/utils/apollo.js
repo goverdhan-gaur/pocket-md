@@ -9,8 +9,9 @@ const localClient = new ApolloClient({
 const client = new ApolloClient({
   link: new HttpLink({
     uri: 'https://powerful-beyond-01021.herokuapp.com/graphql',
-    headers: { 'Content-Type': 'application/json' },
-    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }),
   cache: new InMemoryCache(),
 })
