@@ -1,8 +1,7 @@
-import { aspectRatioContainer, aspectRatioImage } from '@/mixins/aspectRatio'
+// import { aspectRatioContainer, aspectRatioImage } from '@/mixins/aspectRatio'
 import { px } from '@/mixins/getRemFontSize'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Image from 'next/image'
 import { mediaQuery } from '@/mixins/mediaQuery'
 
 export const wrapper = styled.div`
@@ -19,16 +18,7 @@ export const wrapper = styled.div`
 color: ${props => props.theme.invertBackground};
 `
 
-export const imageContainer = styled.div`
-  ${aspectRatioContainer('4:3')}
-`
-
-export const image = styled(Image)`
-  ${aspectRatioImage}
-`
-
 export const title = styled.h2`
-
   ${px(28)}
   font-weight: 500;
   ${mediaQuery(
@@ -98,3 +88,8 @@ export const link = styled(Link)`
 `
 
 export const meta = styled.div``
+
+
+export const sNo = styled.p`
+      position: absolute
+`

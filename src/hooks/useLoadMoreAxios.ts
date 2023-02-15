@@ -17,6 +17,7 @@ export const useLoadMoreAxios = () => {
         const scrollTop = document.documentElement.scrollTop
 
         if (windowHeight + scrollTop >= documentHeight && !loading) {
+            window.removeEventListener('scroll', handleScroll)
             setLoading(true)
             axios
                 .post('/api/graphql', {

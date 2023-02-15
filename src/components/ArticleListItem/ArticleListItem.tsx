@@ -1,29 +1,21 @@
-import React, { FunctionComponent, useContext } from 'react'
+import React, { FunctionComponent, memo } from 'react'
 import * as Styled from './ArticleListItem.styled'
 import { Article } from '@/pages'
-import type { ImageLoaderProps } from 'next/image'
-import { ThemeContext } from 'styled-components'
+import { Image } from '../Image/Image'
+
 interface Props {
   article: Article
+  index: number
 }
 
-export const ArticleListItem: FunctionComponent<Props> = (props) => {
-  const theme = useContext(ThemeContext)
+export const ArticleListItem: FunctionComponent<Props> = memo((props) => {
+  const { article, index } = props
+  const url = article.url
 
-  const { article } = props
-  const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
-    return `${article.url}/${src}?w=${width}&q=${quality || 75}`
-  }
   return (
-    <Styled.wrapper theme={theme}>
-      <Styled.imageContainer>
-        <Styled.image
-          loader={myLoader}
-          src="me.png"
-          alt="Picture of the author"
-          layout="fill"
-        />
-      </Styled.imageContainer>
+    <Styled.wrapper>
+      <Styled.sNo>{index + 1}</Styled.sNo>
+      <Image src={url} alt="asdas" />
       <Styled.meta>
         <Styled.title>{article.title}</Styled.title>
         <Styled.description>{article.text}</Styled.description>
@@ -31,4 +23,8 @@ export const ArticleListItem: FunctionComponent<Props> = (props) => {
       </Styled.meta>
     </Styled.wrapper>
   )
-}
+})
+
+ArticleListItem.displayName = 'ArticleListItem'
+
+export default ArticleListItem

@@ -6,7 +6,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 export default async function asynchandler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const page = req.body.page;
-    console.log(page)
+
     const data = await client.query({
       query: !page ? firstPageArticles : retrievePageArticles,
       variables: page ? { page: page } : {}

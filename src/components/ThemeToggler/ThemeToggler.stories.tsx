@@ -7,4 +7,4 @@ export default {
   component: ThemeToggler,
 } as ComponentMeta<typeof ThemeToggler>
 
-export const Primary = () => <ThemeToggler title="test" />
+export const Primary = () => <></>
