@@ -1,10 +1,8 @@
 import { client } from '@/utils/apollo'
 import { firstPageArticles } from '@/queries/firstPageArticles'
-import { ArticleList } from '@/components/ArticleList/ArticleList'
-import { ArticleFilter } from '@/components/ArticleFilter/ArticleFilter'
-import { useEffect, useState } from 'react'
 import { useLoadMoreAxios } from '@/hooks/useLoadMoreAxios'
-
+import { Wrapper } from '@/components/Wrapper/Wrapper'
+import { useEffect, useState } from 'react'
 export interface Article {
   __typename: string
   id: string
@@ -33,7 +31,6 @@ const getTypes = (articles: Article[]) => {
 export default function Home(props: HomeProps) {
   const [articles, setArticles] = useState<Article[]>(props.articles)
   const filters: string[] = getTypes(articles)
-
   const [filter, setFilter] = useState<string>('All')
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([])
   const [hasLoaded, setHasLoaded] = useState<boolean>(true)
@@ -74,12 +71,13 @@ export default function Home(props: HomeProps) {
 
   return (
     <>
-      <ArticleFilter
+      <Wrapper
         onFilterClick={setFilter}
         filters={filters}
         activeFilter={filter}
-      />
-      <ArticleList articles={filteredArticles} hasLoaded={hasLoaded} />
+        articles={filteredArticles}
+        hasLoaded={hasLoaded}
+      ></Wrapper>
     </>
   )
 }

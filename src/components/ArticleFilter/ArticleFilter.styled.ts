@@ -7,11 +7,12 @@ interface filterListItemProps {
 }
 
 export const wrapper = styled.div`
-  border-bottom: 1px solid black;
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.4);
   z-index: 9;
+  background-color: ${(props) => {
+        return props.theme.invertBackground
+    }};
   backdrop-filter: blur(10px);
 `
 export const filterList = styled.ul`
@@ -19,7 +20,8 @@ export const filterList = styled.ul`
   margin: 0 auto;
   padding: 1rem 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 3rem;
   list-style-type: none;
   ${px(20)}
   ${mediaQuery(
@@ -45,11 +47,17 @@ export const filterListItem = styled.li<filterListItemProps>`
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 10rem;
+  text-transform: capitalize;
+  background-color: ${(props) => {
+        return props.theme.invertBackground
+    }};
   background-color: ${(props) =>
-        props.isActive ? 'black' : 'rgba(255,255,255,0.4)'};
+        props.isActive
+            ? props.theme.highlightColor
+            : `${props.theme.background}00`};
   outline: ${(props) =>
-        props.isActive ? 'none' : '1.5px solid rgba(0,0,0,0.4)'};
-  color: ${(props) => (props.isActive ? 'white' : 'black')};
+        props.isActive ? 'none' : `2px solid ${props.theme.highlightColor}`};
+  color: ${(props) => props.isActive ? props.theme.color : props.theme.invertColor};
   ${mediaQuery(
             'Tablet',
             `

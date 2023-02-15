@@ -15,7 +15,10 @@ export const ArticleList: React.FC<Props> = (props) => {
       <Styled.wrapper>
         {articles.map((article) => {
           return (
-            <ArticleListItem key={`asdads${Math.random()}`} article={article} />
+            <ArticleListItem
+              key={`article__${Math.random()}`}
+              article={article}
+            />
           )
         })}
         {!hasLoaded && <Loading />}

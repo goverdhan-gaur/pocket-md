@@ -1,10 +1,10 @@
 import React from 'react'
 import { ComponentMeta } from '@storybook/react'
-import { Container } from './Container'
+import { Wrapper } from './Wrapper'
 
 export default {
   title: 'Container',
-  component: Container,
-} as ComponentMeta<typeof Container>
+  component: Wrapper,
+} as ComponentMeta<typeof Wrapper>
 
 export const Primary = () => <></>

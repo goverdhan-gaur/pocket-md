@@ -8,7 +8,7 @@ export const wrapper = styled.div`
   & > div {
     width: 7px;
     height: 7px;
-    background: black;
+    background: ${props => props.theme.invertBackground};
     border-radius: 50%;
   }
 `

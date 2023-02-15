@@ -7,15 +7,16 @@ import { mediaQuery } from '@/mixins/mediaQuery'
 
 export const wrapper = styled.div`
   padding: 2rem 0 3rem;
-  border-bottom: 1px solid black;
+  border-bottom: ${props => `1px solid ${props.theme.invertBackground}`};
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 3rem;
   ${mediaQuery(
-    'Mobile', `
+  'Mobile', `
         grid-template-columns: 1fr;
     `
 )}
+color: ${props => props.theme.invertBackground};
 `
 
 export const imageContainer = styled.div`
@@ -27,11 +28,12 @@ export const image = styled(Image)`
 `
 
 export const title = styled.h2`
-  ${px(36)}
+
+  ${px(28)}
   font-weight: 500;
   ${mediaQuery(
-    'Mobile',
-    `
+  'Mobile',
+  `
         ${px(98)}
     `
 )}
@@ -39,10 +41,11 @@ export const title = styled.h2`
 
 export const description = styled.p`
   margin: 1.54rem 0;
-  ${px(20)}
+  font-weight: 200;
+  ${px(14)}
   ${mediaQuery(
-    'Mobile',
-    `
+  'Mobile',
+  `
         margin: 3rem 0;
         ${px(56)}
     `
@@ -52,26 +55,26 @@ export const description = styled.p`
 export const link = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
+  ${px(12)}
   position: relative;
-  color: black;
-
+  color: ${props => props.theme.invertBackground};
   &:after,
   &:before {
     content: '';
     position: absolute;
     width: 100%;
-    height: 1.5px;
+    height: 2px;
     left: 0;
     bottom: -3px;
   }
 
   &:before {
-    background: rgba(0, 0, 0, 0.2);
+    background: ${props => `${props.theme.invertBackground}20`};
   }
 
   &:after {
-    background: black;
+    background: ${props => `${props.theme.invertBackground}`};
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease-in-out;
@@ -83,13 +86,13 @@ export const link = styled(Link)`
   }
 
   ${mediaQuery(
-    'Mobile',
-    `
+  'Mobile',
+  `
         &:after {
             transition: unset;
         }
 
-        ${px(48)}
+        ${px(36)}
     `
 )}
 `

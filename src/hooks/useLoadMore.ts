@@ -10,7 +10,6 @@ export const useLoadMore = ({ query }: LoadMoreProps) => {
     const [error, setError] = useState<ApolloError>()
     const [data, setData] = useState<Article[]>([])
     const [loading, setLoading] = useState(false)
-    const [hasMore, setHasMore] = useState(true)
     const [page, setPage] = useState<number>(1)
 
     const { fetchMore } = useQuery(query, {
@@ -25,12 +24,11 @@ export const useLoadMore = ({ query }: LoadMoreProps) => {
         const windowHeight = window.innerHeight
         const documentHeight = document.documentElement.scrollHeight - 1
         const scrollTop = document.documentElement.scrollTop
-        if (windowHeight + scrollTop >= documentHeight && hasMore && !loading) {
+        if (windowHeight + scrollTop >= documentHeight && !loading) {
             setLoading(true)
             fetchMore({ variables: { page: page } })
                 .then((newData) => {
                     setData([...newData.data.retrievePageArticles])
-                    setHasMore(newData.data.retrievePageArticles.length > 0)
                 })
                 .catch((error) => setError(error))
                 .finally(() => setLoading(false))
@@ -41,7 +39,7 @@ export const useLoadMore = ({ query }: LoadMoreProps) => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
-    }, [data, hasMore, loading]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [data, loading]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    return { loading, error, data, hasMore, fetchMore }
+    return { loading, error, data, fetchMore }
 }

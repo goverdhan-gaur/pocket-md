@@ -3,10 +3,9 @@ import {
   firstPageArticles,
   retrievePageArticles,
 } from '@/queries/firstPageArticles'
-import { ArticleList } from '@/components/ArticleList/ArticleList'
-import { ArticleFilter } from '@/components/ArticleFilter/ArticleFilter'
 import { useEffect, useState } from 'react'
 import { useLoadMore } from '@/hooks/useLoadMore'
+import { Wrapper } from '@/components/Wrapper/Wrapper'
 
 export interface Article {
   __typename: string
@@ -80,14 +79,13 @@ export default function Home(props: HomeProps) {
   }, [filter, articles]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
-      <ArticleFilter
-        onFilterClick={setFilter}
-        filters={filters}
-        activeFilter={filter}
-      />
-      <ArticleList articles={filteredArticles} hasLoaded={hasLoaded} />
-    </>
+    <Wrapper
+      onFilterClick={setFilter}
+      filters={filters}
+      activeFilter={filter}
+      articles={filteredArticles}
+      hasLoaded={hasLoaded}
+    ></Wrapper>
   )
 }
 
