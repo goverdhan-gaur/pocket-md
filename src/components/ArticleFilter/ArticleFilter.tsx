@@ -2,7 +2,6 @@ import React, { FunctionComponent, useContext } from 'react'
 import * as Styled from './ArticleFilter.styled'
 import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
 import { ThemeContext } from 'styled-components'
-import { ToggleFormModal } from '../ToggleFormModal/ToggleFormModal'
 
 interface Props {
   filters: string[]
@@ -21,7 +20,6 @@ export const ArticleFilter: FunctionComponent<Props> = (props) => {
   const { theme } = useContext(ThemeContext)
   return (
     <Styled.wrapper>
-      <ToggleFormModal />
       <Styled.filterList>
         {filters.map((filter) => (
           <Styled.filterListItem
