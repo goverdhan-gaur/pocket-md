@@ -28,7 +28,7 @@ export function useImageUrls(url: string, imgUrl: string) {
                 return;
             }
             try {
-                const res = await fetch(`/api/test2?url=${url}`);
+                const res = await fetch(`/api/getImage?url=${url}`);
                 const data = await res.json();
                 if (isUrl(data)) {
                     checkIfImageExists(data, (e: any) => {

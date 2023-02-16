@@ -1,3 +1,4 @@
+
 import { px } from '@/mixins/getRemFontSize'
 import { mediaQuery } from '@/mixins/mediaQuery'
 import styled from 'styled-components'
@@ -46,6 +47,8 @@ export const filterListItem = styled.li<filterListItemProps>`
   text-align: center;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  -webkit-border-radius: 10rem;
+  -moz-border-radius: 10rem;
   border-radius: 10rem;
   text-transform: capitalize;
   background-color: ${(props) => {
@@ -55,9 +58,9 @@ export const filterListItem = styled.li<filterListItemProps>`
         props.isActive
             ? props.theme.highlightColor
             : `${props.theme.background}00`};
-  outline: ${(props) =>
-        props.isActive ? 'none' : `2px solid ${props.theme.highlightColor}`};
-  color: ${(props) => props.isActive ? props.theme.color : props.theme.invertColor};
+  border: ${(props) => `2px solid ${props.theme.highlightColor}`};
+  color: ${(props) =>
+        props.isActive ? props.theme.color : props.theme.invertColor};
   ${mediaQuery(
             'Tablet',
             `

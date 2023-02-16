@@ -1,15 +1,17 @@
 import React, { FunctionComponent, useMemo, memo } from 'react'
 import * as Styled from './ArticleList.styled'
-import { HomeProps } from '@/pages'
+import { Article, ArticleType } from '@/pages'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import { Loading } from '../Loading/Loading'
 
-interface Props extends HomeProps {
+interface Props {
+  articles: Article[]
   hasLoaded: boolean
+  articleType: ArticleType
 }
 
 export const ArticleList: FunctionComponent<Props> = (props) => {
-  const { articles, hasLoaded } = props
+  const { articles, hasLoaded, articleType } = props
 
   const memoizedArticles = useMemo(
     () =>
@@ -18,9 +20,10 @@ export const ArticleList: FunctionComponent<Props> = (props) => {
           key={`article__${article.id}_${index}}`}
           article={article}
           index={index}
+          articleType={articleType}
         />
       )),
-    [articles]
+    [articles, articleType]
   )
 
   return (

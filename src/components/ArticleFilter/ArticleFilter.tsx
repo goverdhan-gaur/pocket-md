@@ -1,22 +1,23 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext } from 'react'
 import * as Styled from './ArticleFilter.styled'
+import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
+import { ThemeContext } from 'styled-components'
 
 interface Props {
   filters: string[]
   activeFilter: string
   onFilterClick: (id: string) => void
+  toggleTheme: () => void
 }
 
-export const ArticleFilter: FunctionComponent<Props> = ({
-  filters,
-  onFilterClick,
-  activeFilter,
-}) => {
+export const ArticleFilter: FunctionComponent<Props> = (props) => {
+  const { onFilterClick, filters, activeFilter, toggleTheme } = props
   const filterClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     const target = event.target as HTMLDivElement
     onFilterClick(target.id)
   }
 
+  const { theme } = useContext(ThemeContext)
   return (
     <Styled.wrapper>
       <Styled.filterList>
@@ -31,6 +32,7 @@ export const ArticleFilter: FunctionComponent<Props> = ({
           </Styled.filterListItem>
         ))}
       </Styled.filterList>
+      <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
     </Styled.wrapper>
   )
 }

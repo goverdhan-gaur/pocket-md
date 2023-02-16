@@ -1,25 +1,30 @@
 import React, { FunctionComponent, memo } from 'react'
 import * as Styled from './ArticleListItem.styled'
-import { Article } from '@/pages'
-import { Image } from '../Image/Image'
+import { Article, ArticleType } from '@/pages'
+import { ImageComponent } from '../Image/ImageComponent'
 
 interface Props {
   article: Article
   index: number
+  articleType: ArticleType
 }
 
 export const ArticleListItem: FunctionComponent<Props> = memo((props) => {
-  const { article, index } = props
+  const { article, articleType } = props
   const url = article.url
 
   return (
     <Styled.wrapper>
-      <Styled.sNo>{index + 1}</Styled.sNo>
-      <Image src={url} alt="asdas" />
+      <ImageComponent url={url} alt={article.title} articleType={articleType} />
       <Styled.meta>
         <Styled.title>{article.title}</Styled.title>
         <Styled.description>{article.text}</Styled.description>
-        <Styled.link href="/">Read the article</Styled.link>
+        <Styled.link
+          href={article.url ? article.url : 'https://www.google.com/404'}
+          target="_blank"
+        >
+          Read the article
+        </Styled.link>
       </Styled.meta>
     </Styled.wrapper>
   )

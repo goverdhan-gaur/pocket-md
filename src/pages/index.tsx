@@ -16,9 +16,12 @@ export interface Article {
   url: string
 }
 
-export interface HomeProps {
+interface HomeProps {
   articles: Article[]
+  toggleTheme: () => void
 }
+
+export type ArticleType = 'external' | 'internal'
 
 const getTypes = (articles: Article[]) => {
   const types: string[] = ['All']
@@ -29,6 +32,8 @@ const getTypes = (articles: Article[]) => {
 }
 
 export default function Home(props: HomeProps) {
+  const { toggleTheme } = props
+
   const [articles, setArticles] = useState<Article[]>(props.articles)
   const filters: string[] = getTypes(articles)
   const [filter, setFilter] = useState<string>('All')
@@ -77,6 +82,8 @@ export default function Home(props: HomeProps) {
         activeFilter={filter}
         articles={filteredArticles}
         hasLoaded={hasLoaded}
+        articleType={'external'}
+        toggleTheme={toggleTheme}
       ></Wrapper>
     </>
   )

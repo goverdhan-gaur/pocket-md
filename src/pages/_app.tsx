@@ -5,7 +5,7 @@ import { client, localClient } from '@/utils/apollo'
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { darkTheme, lightTheme } from '@/utils/themes'
-import { ThemeToggler } from '@/components/ThemeToggler/ThemeToggler'
+// import { ThemeToggler } from '@/components/ThemeToggler/ThemeToggler'
 
 //
 export default function App({ Component, pageProps }: AppProps) {
@@ -26,9 +26,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
       <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
+        <Component {...pageProps} toggleTheme={toggleTheme} />
       </ApolloProvider>
     </ThemeProvider>
   )

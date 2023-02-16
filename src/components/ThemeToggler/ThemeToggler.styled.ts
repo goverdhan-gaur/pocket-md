@@ -3,36 +3,36 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components'
 
 export const wrapper = styled.div`
-    position: fixed;
+    position: absolute;
     cursor: pointer;
-    top: 10px;
-    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
     z-index:99;
     ${mediaQuery('Mobile', `
-    top: 15px;
-    right: 15px;
+        right: 3rem;
     `)}
   `;
 export const toggleBackground = styled(motion.div)`
     position: relative;
-    width: 50px;
+    width: 4rem;
     background: ${({ theme }) => theme.background};
-    height: 30px;
-    border-radius: 20px;
+    height: 2rem;
+    border-radius: 2rem;
     ${mediaQuery('Mobile', `
-        height: 22.5px;
-        width: 37.5px;
+        width: 8rem;
+        height: 4rem;
     `)}
 `
 export const toggleIcon = styled(motion.div)`
-    width: 20px;
-    height: 20px;
-    top: 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 0.25rem;
     background: ${({ theme }) => theme.invertBackground};
     border-radius: 50%;
     ${mediaQuery('Mobile', `
-        height: 15px;
-        width: 15px;
-        top: 4px;
+        width: 3rem;
+        height: 3rem;
+        top: 0.5rem;
     `)}
 `

@@ -9,13 +9,12 @@ const filterURL =
         const regex = new RegExp("^(?:http(s)?:\\/\\/)([\\w.-])+(?:[\\w\\.-]+)+([\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.])+$");
         return arr.filter((src: string) => regex.test(src))
     }
-let a = 0;
+
 export default async function getImageUrls(
     req: NextApiRequest,
     res: NextApiResponse<string>
 ) {
     const url = req.query.url as string;
-    console.log(a++)
     const DUMMY_IMAGE_URL = 'https://images.unsplash.com/photo-1676127351321-35b1accd3d9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
 
     try {
@@ -25,7 +24,6 @@ export default async function getImageUrls(
         const imageUrlsDataSRC = $('img').map((_, el) => $(el).attr('data-src')).get()
         const filteredSrc = filterURL(imageUrls)
         const filteredDataSrc = filterURL(imageUrlsDataSRC)
-
 
         if (filteredDataSrc.length > 0) {
             res.status(200).json(imageUrlsDataSRC[0]);

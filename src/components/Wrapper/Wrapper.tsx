@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import * as Styled from './Wrapper.styled'
 import { ArticleFilter } from '../ArticleFilter/ArticleFilter'
 import { ArticleList } from '../ArticleList/ArticleList'
-import { Article } from '@/pages'
+import { Article, ArticleType } from '@/pages'
 
 type Props = {
   filters: string[]
@@ -10,6 +10,8 @@ type Props = {
   onFilterClick: (id: string) => void
   hasLoaded: boolean
   articles: Article[]
+  toggleTheme: () => void
+  articleType: ArticleType
 }
 
 export const Wrapper: FunctionComponent<Props> = ({
@@ -18,6 +20,8 @@ export const Wrapper: FunctionComponent<Props> = ({
   onFilterClick,
   hasLoaded,
   articles,
+  toggleTheme,
+  articleType,
 }) => {
   return (
     <Styled.wrapper>
@@ -25,8 +29,13 @@ export const Wrapper: FunctionComponent<Props> = ({
         onFilterClick={onFilterClick}
         filters={filters}
         activeFilter={activeFilter}
+        toggleTheme={toggleTheme}
       />
-      <ArticleList articles={articles} hasLoaded={hasLoaded} />
+      <ArticleList
+        articles={articles}
+        hasLoaded={hasLoaded}
+        articleType={articleType}
+      />
     </Styled.wrapper>
   )
 }
