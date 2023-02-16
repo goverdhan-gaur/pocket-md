@@ -1,8 +1,12 @@
-import { client } from '@/utils/apollo'
-import { firstPageArticles } from '@/queries/firstPageArticles'
-import { useLoadMoreAxios } from '@/hooks/useLoadMoreAxios'
-import { Wrapper } from '@/components/Wrapper/Wrapper'
+import { localClient as client } from '@/utils/apollo'
+import {
+  firstPageArticles,
+  retrievePageArticles,
+} from '@/queries/firstPageArticles'
 import { useEffect, useState } from 'react'
+import { useLoadMore } from '@/hooks/useLoadMore'
+import { Wrapper } from '@/components/Wrapper/Wrapper'
+
 export interface Article {
   __typename: string
   id: string
@@ -16,12 +20,11 @@ export interface Article {
   url: string
 }
 
-interface HomeProps {
+export interface HomeProps {
   articles: Article[]
+  page: string
   toggleTheme: () => void
 }
-
-export type ArticleType = 'external' | 'internal'
 
 const getTypes = (articles: Article[]) => {
   const types: string[] = ['All']
@@ -33,20 +36,22 @@ const getTypes = (articles: Article[]) => {
 
 export default function Home(props: HomeProps) {
   const { toggleTheme } = props
-
   const [articles, setArticles] = useState<Article[]>(props.articles)
   const filters: string[] = getTypes(articles)
+
   const [filter, setFilter] = useState<string>('All')
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([])
-  const [hasLoaded, setHasLoaded] = useState<boolean>(true)
-  const { data, loading } = useLoadMoreAxios()
+  const [hasLoaded, setHasLoaded] = useState<boolean>(false)
+  const { data, loading } = useLoadMore({
+    query: retrievePageArticles,
+  })
 
   const filterArticles = (articles: Article[], filter: string) => {
     return articles.filter(
       (article: { type: string }) => article.type === filter
     )
   }
-
+  // To reset the scroll
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -61,31 +66,30 @@ export default function Home(props: HomeProps) {
   }, [data, loading]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    console.log(articles.length)
-    if (filter === 'All') {
-      setFilteredArticles(articles)
-    } else {
-      setFilteredArticles(filterArticles(articles, filter))
-    }
-    setHasLoaded(true)
+    const delay = setTimeout(() => {
+      if (filter === 'All') {
+        setFilteredArticles(articles)
+      } else {
+        setFilteredArticles(filterArticles(articles, filter))
+      }
+      setHasLoaded(true)
+    }, 500)
 
     return () => {
-      //
+      clearTimeout(delay)
     }
   }, [filter, articles]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
-      <Wrapper
-        onFilterClick={setFilter}
-        filters={filters}
-        activeFilter={filter}
-        articles={filteredArticles}
-        hasLoaded={hasLoaded}
-        articleType={'external'}
-        toggleTheme={toggleTheme}
-      ></Wrapper>
-    </>
+    <Wrapper
+      onFilterClick={setFilter}
+      filters={filters}
+      activeFilter={filter}
+      articles={filteredArticles}
+      hasLoaded={hasLoaded}
+      articleType={'internal'}
+      toggleTheme={toggleTheme}
+    ></Wrapper>
   )
 }
 
@@ -97,6 +101,7 @@ export async function getServerSideProps() {
   return {
     props: {
       articles: data.firstPageArticles,
+      page: 'local',
     },
   }
 }

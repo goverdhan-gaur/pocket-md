@@ -6,9 +6,12 @@
 }
 
 :root {
-  font-size: 16px;
+  /* To change rem size onn resizing */
+  font-size: 1vw;
 }
 
 body {
   font-family: 'Roboto Slab', serif;
+  /* background-color: rgb(236, 229, 215); */
+  scroll-behavior: smooth;
 }
