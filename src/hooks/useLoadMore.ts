@@ -1,4 +1,5 @@
-import { Article } from '@/pages'
+
+import { Article } from '@/Interfaces/article'
 import { ApolloError, DocumentNode, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 
@@ -16,7 +17,6 @@ export const useLoadMore = ({ query }: LoadMoreProps) => {
         variables: { page: page },
         onError: (error) => setError(error),
         onCompleted: (data) => setData(data),
-        // To stop fetching data on mount
         skip: true,
     })
 

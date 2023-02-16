@@ -3,32 +3,12 @@ import { firstPageArticles } from '@/queries/firstPageArticles'
 import { useLoadMoreAxios } from '@/hooks/useLoadMoreAxios'
 import { Wrapper } from '@/components/Wrapper/Wrapper'
 import { useEffect, useState } from 'react'
-export interface Article {
-  __typename: string
-  id: string
-  author: string
-  createdAt: string
-  score: number
-  updatedAt: string
-  title: string
-  text: string
-  type: string
-  url: string
-}
+import { Article } from '@/Interfaces/article'
+import { getTypes } from '@/utils/getTypes'
 
 interface HomeProps {
   articles: Article[]
   toggleTheme: () => void
-}
-
-export type ArticleType = 'external' | 'internal'
-
-const getTypes = (articles: Article[]) => {
-  const types: string[] = ['All']
-  articles.forEach((item: Article) => {
-    !types.includes(item.type) && types.push(item.type)
-  })
-  return types
 }
 
 export default function Home(props: HomeProps) {
@@ -70,7 +50,7 @@ export default function Home(props: HomeProps) {
     setHasLoaded(true)
 
     return () => {
-      //
+      // cleanup code
     }
   }, [filter, articles]) // eslint-disable-line react-hooks/exhaustive-deps
 

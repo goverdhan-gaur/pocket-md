@@ -5,9 +5,7 @@ import { client, localClient } from '@/utils/apollo'
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { darkTheme, lightTheme } from '@/utils/themes'
-// import { ThemeToggler } from '@/components/ThemeToggler/ThemeToggler'
 
-//
 export default function App({ Component, pageProps }: AppProps) {
   const { page } = pageProps
   const [theme, setTheme] = useState<string>('light')

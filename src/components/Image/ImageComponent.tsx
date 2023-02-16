@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import * as Styled from './ImageComponent.styled'
 import { useImageUrls } from '@/hooks/useImageUrl'
 import Image, { ImageLoader } from 'next/image'
-import { ArticleType } from '@/pages'
+import { ArticleType } from '@/Interfaces/types'
 
 interface ImageProps {
   url: string

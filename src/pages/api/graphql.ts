@@ -1,5 +1,6 @@
 
-import { firstPageArticles, retrievePageArticles } from '@/queries/firstPageArticles';
+import { firstPageArticles } from '@/queries/firstPageArticles';
+import { retrievePageArticles } from '@/queries/retrievePageArticles';
 import { client } from '@/utils/apollo';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
