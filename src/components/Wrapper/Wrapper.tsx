@@ -2,7 +2,8 @@ import React, { FunctionComponent } from 'react'
 import * as Styled from './Wrapper.styled'
 import { ArticleFilter } from '../ArticleFilter/ArticleFilter'
 import { ArticleList } from '../ArticleList/ArticleList'
-import { Article, ArticleType } from '@/pages'
+import { Article } from '@/Interfaces/article'
+import { ArticleType } from '@/Interfaces/types'
 
 type Props = {
   filters: string[]

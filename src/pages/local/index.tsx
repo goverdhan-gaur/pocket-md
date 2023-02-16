@@ -1,24 +1,10 @@
 import { localClient as client } from '@/utils/apollo'
-import {
-  firstPageArticles,
-  retrievePageArticles,
-} from '@/queries/firstPageArticles'
+import { firstPageArticles } from '@/queries/firstPageArticles'
 import { useEffect, useState } from 'react'
 import { useLoadMore } from '@/hooks/useLoadMore'
 import { Wrapper } from '@/components/Wrapper/Wrapper'
-
-export interface Article {
-  __typename: string
-  id: string
-  author: string
-  createdAt: string
-  score: number
-  updatedAt: string
-  title: string
-  text: string
-  type: string
-  url: string
-}
+import { Article } from '@/Interfaces/article'
+import { retrievePageArticles } from '@/queries/retrievePageArticles'
 
 export interface HomeProps {
   articles: Article[]

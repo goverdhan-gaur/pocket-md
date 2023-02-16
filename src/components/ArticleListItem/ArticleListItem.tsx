@@ -1,7 +1,8 @@
 import React, { FunctionComponent, memo } from 'react'
 import * as Styled from './ArticleListItem.styled'
-import { Article, ArticleType } from '@/pages'
 import { ImageComponent } from '../Image/ImageComponent'
+import { Article } from '@/Interfaces/article'
+import { ArticleType } from '@/Interfaces/types'
 
 interface Props {
   article: Article

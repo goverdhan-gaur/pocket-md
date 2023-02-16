@@ -1,8 +1,10 @@
 import React, { FunctionComponent, useMemo, memo } from 'react'
 import * as Styled from './ArticleList.styled'
-import { Article, ArticleType } from '@/pages'
+
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import { Loading } from '../Loading/Loading'
+import { Article } from '@/Interfaces/article'
+import { ArticleType } from '@/Interfaces/types'
 
 interface Props {
   articles: Article[]

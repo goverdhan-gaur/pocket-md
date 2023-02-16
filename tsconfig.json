@@ -19,6 +19,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/utils/getTypes.js",
+    "src/utils/interface.js",
+    "src/utils/themes.js",
+    "src/utils/apollo.js"
+  ],
   "exclude": ["node_modules"]
 }

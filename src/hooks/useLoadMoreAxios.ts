@@ -1,8 +1,8 @@
-import { Article } from '@/pages'
 import { ApolloError } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import _ from 'lodash'
+import { Article } from '@/Interfaces/article'
 
 
 export const useLoadMoreAxios = () => {

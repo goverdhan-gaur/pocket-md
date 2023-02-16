@@ -2,10 +2,6 @@ import React, { FunctionComponent } from 'react'
 import * as Styled from './Loading.styled'
 import { Variants } from 'framer-motion'
 
-type Props = {
-  //
-}
-
 const item: Variants = {
   initial: {
     scale: 1,
@@ -20,7 +16,8 @@ const item: Variants = {
     },
   }),
 }
-export const Loading: FunctionComponent<Props> = () => {
+
+export const Loading: FunctionComponent = () => {
   return (
     <Styled.wrapper>
       <Styled.left
