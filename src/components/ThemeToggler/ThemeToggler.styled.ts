@@ -7,7 +7,7 @@ export const wrapper = styled.div`
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
-    right: 1rem;
+    right: 2rem;
     z-index:99;
     ${mediaQuery('Mobile', `
         right: 3rem;

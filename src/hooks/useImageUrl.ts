@@ -1,36 +1,37 @@
-
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react';
 import isUrl from 'is-url';
 import { checkIfImageExists } from '@/utils/checkIfImageExists';
 import { DUMMY_IMAGE_URL } from '@/data/DUMMY_DATA';
+import { getRandomUrl } from '@/utils/getRandomFromArray';
 
-export function useImageUrls(url: string, imgUrl: string) {
-    const [imageUrl, setImageUrl] = useState<string>(imgUrl);
+export function useImageUrls(url: string, isVisible: boolean) {
+    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
+
+    const fetchImageUrls = useCallback(async () => {
+
+        if (!isUrl(url)) {
+            setImageUrl(getRandomUrl(DUMMY_IMAGE_URL));
+            return;
+        }
+
+        try {
+            const data = await fetch(`/api/getImage?url=${encodeURI(url)}`).then((res) => res.json());
+            if (isUrl(data)) {
+                checkIfImageExists(data, (exists: boolean) => {
+                    setImageUrl(exists ? data : getRandomUrl(DUMMY_IMAGE_URL));
+                });
+            }
+        } catch (err) {
+            console.log(err)
+        }
+
+    }, [url]);
 
     useEffect(() => {
-        async function fetchImageUrls() {
-            if (!isUrl(url)) {
-                setImageUrl(DUMMY_IMAGE_URL)
-                return;
-            }
-            try {
-                const res = await fetch(`/api/getImage?url=${url}`);
-                const data = await res.json();
-                checkIfImageExists(data, (e: boolean) => {
-                    if (e) {
-                        setImageUrl(data);
-                    } else {
-                        setImageUrl(DUMMY_IMAGE_URL)
-                    }
-                })
-            } catch (err) {
-                console.error(err);
-            }
-        }
-        if (!imageUrl) {
+        if (!imageUrl && isVisible) {
             fetchImageUrls();
         }
-    }, [imageUrl, url]);
+    }, [fetchImageUrls, imageUrl, isVisible]);
 
     return imageUrl;
 }

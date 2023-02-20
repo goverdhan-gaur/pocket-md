@@ -8,9 +8,9 @@ import { darkTheme, lightTheme } from '@/utils/themes'
 
 export default function App({ Component, pageProps }: AppProps) {
   const { page } = pageProps
-  const [theme, setTheme] = useState<string>('light')
   const apolloClient = page === 'local' ? localClient : client
 
+  const [theme, setTheme] = useState<string>('light')
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
