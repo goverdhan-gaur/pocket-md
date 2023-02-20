@@ -2,18 +2,15 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { client, localClient } from '@/utils/apollo'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { darkTheme, lightTheme } from '@/utils/themes'
+import { useThemeStore } from '@/store/theme'
 
 export default function App({ Component, pageProps }: AppProps) {
   const { page } = pageProps
   const apolloClient = page === 'local' ? localClient : client
-
-  const [theme, setTheme] = useState<string>('light')
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  const { theme, setTheme, toggleTheme } = useThemeStore()
 
   useEffect(() => {
     const prefersDarkMode = window.matchMedia(

@@ -2,22 +2,19 @@ import { client } from '@/utils/apollo'
 import { firstPageArticles } from '@/queries/firstPageArticles'
 import { Wrapper } from '@/components/Wrapper/Wrapper'
 import { Article } from '@/Interfaces/article'
+import { FormModal } from '@/components/FormModal/FormModal'
+import { useModalStore } from '@/store/modal'
 
 interface HomeProps {
   articles: Article[]
-  toggleTheme: () => void
 }
 
 export default function Home(props: HomeProps) {
-  const { toggleTheme } = props
-
+  const { isOpen } = useModalStore()
   return (
     <>
-      <Wrapper
-        articles={props.articles}
-        articleType={'external'}
-        toggleTheme={toggleTheme}
-      ></Wrapper>
+      {isOpen && <FormModal />}
+      <Wrapper articles={props.articles} articleType={'external'}></Wrapper>
     </>
   )
 }

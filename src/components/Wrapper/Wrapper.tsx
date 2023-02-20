@@ -11,7 +11,6 @@ import { Loading } from '../Loading/Loading'
 
 type Props = {
   articles: Article[]
-  toggleTheme: () => void
   articleType: ArticleType
 }
 
@@ -23,7 +22,6 @@ const filterArticles = (articlesList: Article[], filter: string) => {
 
 export const Wrapper: FunctionComponent<Props> = ({
   articles,
-  toggleTheme,
   articleType,
 }) => {
   const [articlesList, setArticlesList] = useState<Article[]>(articles)
@@ -77,7 +75,6 @@ export const Wrapper: FunctionComponent<Props> = ({
         onFilterClick={setFilter}
         filters={filters}
         activeFilter={filter}
-        toggleTheme={toggleTheme}
       />
       {filteredArticles.length ? (
         <ArticleList
