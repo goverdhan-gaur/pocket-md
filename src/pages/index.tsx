@@ -2,7 +2,7 @@ import { client } from '@/utils/apollo'
 import { firstPageArticles } from '@/queries/firstPageArticles'
 import { Wrapper } from '@/components/Wrapper/Wrapper'
 import { Article } from '@/Interfaces/article'
-
+import Head from 'next/head'
 interface HomeProps {
   articles: Article[]
   toggleTheme: () => void
@@ -13,6 +13,11 @@ export default function Home(props: HomeProps) {
 
   return (
     <>
+      <div>
+        <Head>
+          <title>Pocket MD</title>
+        </Head>
+      </div>
       <Wrapper
         articles={props.articles}
         articleType={'external'}
