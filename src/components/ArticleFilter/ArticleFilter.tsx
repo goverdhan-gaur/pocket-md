@@ -4,6 +4,7 @@ import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
 import { ThemeContext } from 'styled-components'
 // import { ToggleFormModal } from '../ToggleFormModal/ToggleFormModal'
 
+
 interface Props {
   filters: string[]
   activeFilter: string
