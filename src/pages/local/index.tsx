@@ -5,19 +5,12 @@ import { useLoadMore } from '@/hooks/useLoadMore'
 import { Wrapper } from '@/components/Wrapper/Wrapper'
 import { Article } from '@/Interfaces/article'
 import { retrievePageArticles } from '@/queries/retrievePageArticles'
+import { getTypes } from '@/utils/getTypes'
 
 export interface HomeProps {
   articles: Article[]
   page: string
   toggleTheme: () => void
-}
-
-const getTypes = (articles: Article[]) => {
-  const types: string[] = ['All']
-  articles.forEach((item: Article) => {
-    !types.includes(item.type) && types.push(item.type)
-  })
-  return types
 }
 
 export default function Home(props: HomeProps) {
@@ -30,6 +23,7 @@ export default function Home(props: HomeProps) {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
   const { data, loading } = useLoadMore({
     query: retrievePageArticles,
+    useApollo: true,
   })
 
   const filterArticles = (articles: Article[], filter: string) => {

@@ -1,10 +1,11 @@
 import { client } from '@/utils/apollo'
 import { firstPageArticles } from '@/queries/firstPageArticles'
-import { useLoadMoreAxios } from '@/hooks/useLoadMoreAxios'
 import { Wrapper } from '@/components/Wrapper/Wrapper'
 import { useEffect, useState } from 'react'
 import { Article } from '@/Interfaces/article'
 import { getTypes } from '@/utils/getTypes'
+import { useLoadMore } from '@/hooks/useLoadMore'
+import { retrievePageArticles } from '@/queries/retrievePageArticles'
 
 interface HomeProps {
   articles: Article[]
@@ -19,7 +20,7 @@ export default function Home(props: HomeProps) {
   const [filter, setFilter] = useState<string>('All')
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([])
   const [hasLoaded, setHasLoaded] = useState<boolean>(true)
-  const { data, loading } = useLoadMoreAxios()
+  const { data, loading } = useLoadMore({ query: retrievePageArticles })
 
   const filterArticles = (articles: Article[], filter: string) => {
     return articles.filter(

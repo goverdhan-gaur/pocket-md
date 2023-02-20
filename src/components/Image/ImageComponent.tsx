@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState, useRef } from 'react'
 import * as Styled from './ImageComponent.styled'
 import { useImageUrls } from '@/hooks/useImageUrl'
-import Image, { ImageLoader } from 'next/image'
 import { ArticleType } from '@/Interfaces/types'
+import useIntersectionObserver from '@/hooks/useIntersectionObserver'
 
 interface ImageProps {
   url: string
@@ -15,47 +15,28 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
   articleType,
   alt,
 }) => {
-  const [image, setImage] = useState('')
-  const imageUrls = useImageUrls(url, image)
-
-  // Define loader function based on the type prop
-  const loader: ImageLoader | undefined =
-    articleType === 'internal'
-      ? ({ src, width, quality }) =>
-          `${url}/${src}?w=${width}&q=${quality || 75}`
-      : undefined
+  const componentRef = useRef<HTMLDivElement>(null)
+  const [image, setImage] = useState<string>('')
+  const isVisible = useIntersectionObserver(componentRef, { threshold: 0.1 })
+  const imageUrls = useImageUrls(url, isVisible)
 
   useEffect(() => {
-    console.log(loader)
-    if (!image && imageUrls && articleType === 'external') {
+    if (articleType === 'internal') {
+      setImage(url)
+    } else if (imageUrls) {
       setImage(imageUrls)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageUrls])
+  }, [articleType, imageUrls, url])
 
   return (
-    <Styled.imageContainer>
-      {articleType === 'internal' &&
-        (loader ? (
-          <Image
-            loader={loader}
-            src="/me.png"
-            alt={alt || 'Image'}
-            layout="fill"
-          />
-        ) : (
-          <Styled.innerContainer>
-            <Styled.loading />
-          </Styled.innerContainer>
-        ))}
-      {articleType === 'external' &&
-        (image ? (
-          <Styled.image loading="lazy" src={image} alt={alt || 'Image'} />
-        ) : (
-          <Styled.innerContainer>
-            <Styled.loading />
-          </Styled.innerContainer>
-        ))}
+    <Styled.imageContainer ref={componentRef}>
+      {image && isVisible ? (
+        <Styled.image src={image} alt={alt || 'Image'} />
+      ) : (
+        <Styled.innerContainer>
+          <Styled.loading />
+        </Styled.innerContainer>
+      )}
     </Styled.imageContainer>
   )
 }

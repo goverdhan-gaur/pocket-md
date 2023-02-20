@@ -5,7 +5,6 @@ import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import { Loading } from '../Loading/Loading'
 import { Article } from '@/Interfaces/article'
 import { ArticleType } from '@/Interfaces/types'
-
 interface Props {
   articles: Article[]
   hasLoaded: boolean
@@ -14,7 +13,6 @@ interface Props {
 
 export const ArticleList: FunctionComponent<Props> = (props) => {
   const { articles, hasLoaded, articleType } = props
-
   const memoizedArticles = useMemo(
     () =>
       articles.map((article, index) => (
