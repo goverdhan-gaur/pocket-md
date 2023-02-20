@@ -64,6 +64,7 @@ export const useLoadMore = ({ query, useApollo }: LoadMoreProps) => {
         if (!loading && load) {
             getData();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [load])
 
     useEffect(() => {
