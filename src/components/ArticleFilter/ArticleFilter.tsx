@@ -30,7 +30,7 @@ export const ArticleFilter: FunctionComponent<Props> = (props) => {
               key={filter}
               id={filter}
               onClick={filterClickHandler}
-              isActive={Boolean(activeFilter === filter)}
+              isActive={activeFilter === filter}
             >
               {filter}
             </Styled.filterListItem>
