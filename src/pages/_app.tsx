@@ -5,6 +5,7 @@ import { client, localClient } from '@/utils/apollo'
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { darkTheme, lightTheme } from '@/utils/themes'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }: AppProps) {
   const { page } = pageProps
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <ApolloProvider client={apolloClient}>
         <Component {...pageProps} toggleTheme={toggleTheme} />
+        <Analytics />
       </ApolloProvider>
     </ThemeProvider>
   )
