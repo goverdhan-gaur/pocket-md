@@ -12,8 +12,7 @@ interface LoadMoreProps {
 }
 
 export const useLoadMore = ({ query, useApollo }: LoadMoreProps) => {
-    const { scrollYProgress, scrollY } = useScroll()
-    const scrollYPori = scrollYProgress.get()
+    const { scrollYProgress } = useScroll()
     const [error, setError] = useState<ApolloError>()
     const [data, setData] = useState<Article[]>([])
     const [loading, setLoading] = useState(false)
