@@ -26,9 +26,7 @@ export const useLoadMore = ({ query, useApollo }: LoadMoreProps) => {
         skip: true
     })
 
-
     const getData = async () => {
-        setLoading(true)
         if (useApollo) {
             fetchMore({ variables: { page: page } })
                 .then((newData) => {
@@ -62,6 +60,7 @@ export const useLoadMore = ({ query, useApollo }: LoadMoreProps) => {
 
     useEffect(() => {
         if (!loading && load) {
+            setLoading(true)
             getData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

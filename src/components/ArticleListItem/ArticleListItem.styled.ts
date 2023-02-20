@@ -3,8 +3,9 @@ import { px } from '@/mixins/getRemFontSize'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { mediaQuery } from '@/mixins/mediaQuery'
+import { motion } from 'framer-motion'
 
-export const wrapper = styled.div`
+export const wrapper = styled(motion.div)`
   padding: 2rem 0 3rem;
   border-bottom: ${props => `1px solid ${props.theme.invertBackground}`};
   display: grid;
@@ -88,7 +89,6 @@ export const link = styled(Link)`
 `
 
 export const meta = styled.div``
-
 
 export const sNo = styled.p`
       position: absolute

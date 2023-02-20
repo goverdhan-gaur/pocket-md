@@ -1,9 +1,8 @@
-import React, { FunctionComponent, useEffect, useState, useRef } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import * as Styled from './ImageComponent.styled'
 import { useImageUrls } from '@/hooks/useImageUrl'
 import { ArticleType } from '@/Interfaces/types'
-import useIntersectionObserver from '@/hooks/useIntersectionObserver'
-
+import { useInView } from 'react-intersection-observer'
 interface ImageProps {
   url: string
   alt?: string
@@ -15,10 +14,9 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
   articleType,
   alt,
 }) => {
-  const componentRef = useRef<HTMLDivElement>(null)
+  const [ref, inView] = useInView()
   const [image, setImage] = useState<string>('')
-  const isVisible = useIntersectionObserver(componentRef, { threshold: 0.1 })
-  const imageUrls = useImageUrls(url, isVisible)
+  const imageUrls = useImageUrls(url, inView)
 
   useEffect(() => {
     if (articleType === 'internal') {
@@ -29,8 +27,8 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
   }, [articleType, imageUrls, url])
 
   return (
-    <Styled.imageContainer ref={componentRef}>
-      {image && isVisible ? (
+    <Styled.imageContainer ref={ref}>
+      {image && inView ? (
         <Styled.image src={image} alt={alt || 'Image'} />
       ) : (
         <Styled.innerContainer>

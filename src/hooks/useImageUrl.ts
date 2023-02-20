@@ -8,10 +8,12 @@ export function useImageUrls(url: string, isVisible: boolean) {
     const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
     const fetchImageUrls = useCallback(async () => {
+
         if (!isUrl(url)) {
             setImageUrl(getRandomUrl(DUMMY_IMAGE_URL));
             return;
         }
+
         try {
             const data = await fetch(`/api/getImage?url=${encodeURI(url)}`).then((res) => res.json());
             if (isUrl(data)) {
@@ -22,6 +24,7 @@ export function useImageUrls(url: string, isVisible: boolean) {
         } catch (err) {
             console.log(err)
         }
+
     }, [url]);
 
     useEffect(() => {

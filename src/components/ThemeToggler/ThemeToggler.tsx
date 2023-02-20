@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import * as Styled from './ThemeToggler.styled'
 import { Variants } from 'framer-motion'
 import { useWindowResize } from '@/hooks/useWindowResize'
@@ -20,18 +20,13 @@ export const ThemeToggler: FunctionComponent<Props> = ({ toggleTheme }) => {
     setDarkModeOn(!darkModeOn)
     toggleTheme()
   }
-
-  useEffect(() => {
-    console.log(windowSize.width)
-  }, [windowSize.width])
-
   return (
     <Styled.wrapper key={windowSize.width} onClick={handleToggleClick}>
       <Styled.toggleBackground>
         <Styled.toggleIcon
           variants={variants}
           animate={darkModeOn ? 'on' : 'off'}
-          transition={{}}
+          transition={{ type: 'spring', duration: 0.2 }}
         ></Styled.toggleIcon>
       </Styled.toggleBackground>
     </Styled.wrapper>
