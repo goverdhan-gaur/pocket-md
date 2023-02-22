@@ -16,3 +16,7 @@ body {
   /* background-color: rgb(236, 229, 215); */
   scroll-behavior: smooth;
 }
+
+input {
+  font-family: 'Roboto Slab', serif;
+}

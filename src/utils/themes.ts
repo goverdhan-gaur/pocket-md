@@ -16,8 +16,8 @@ export const lightTheme = {
   invertColor: colors.beige,
   highlightColor: colors.green,
   invertHighlightColor: colors.pink,
-  backgroundTransparent: colors.black50
-
+  backgroundTransparent: colors.black50,
+  white: colors.beige,
 }
 
 export const darkTheme = {
@@ -27,6 +27,7 @@ export const darkTheme = {
   background: colors.black,
   color: colors.beige,
   highlightColor: colors.green,
-  invertHighlightColor: colors.green,
-  backgroundTransparent: colors.beige50
+  invertHighlightColor: colors.pink,
+  backgroundTransparent: colors.beige50,
+  white: colors.beige,
 }

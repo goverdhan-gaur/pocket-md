@@ -6,6 +6,7 @@ export const wrapper = styled.div``
 
 export const innerContainer = styled.div`
   ${aspectRatioImage}
+
   display: flex;
   align-items: center;
 `

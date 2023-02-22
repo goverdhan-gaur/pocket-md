@@ -1,10 +1,10 @@
 import React from 'react'
 import { ComponentMeta } from '@storybook/react'
-import { ArticleFilter } from './ArticleFilter'
+import { Header } from './Header'
 
 export default {
   title: 'ArticleFilter',
-  component: ArticleFilter,
-} as ComponentMeta<typeof ArticleFilter>
+  component: Header,
+} as ComponentMeta<typeof Header>
 
 export const Primary = () => <></>

@@ -3,10 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components'
 
 export const wrapper = styled.div`
-    position: absolute;
     cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
     right: 2rem;
     z-index:99;
     ${mediaQuery('Mobile', `

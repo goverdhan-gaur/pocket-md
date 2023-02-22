@@ -23,6 +23,12 @@ export const title = styled.h2`
   ${px(28)}
   font-weight: 500;
   ${mediaQuery(
+  'Tablet',
+  `
+          ${px(40)}
+      `
+)}
+  ${mediaQuery(
   'Mobile',
   `
         ${px(98)}
@@ -34,6 +40,12 @@ export const description = styled.p`
   margin: 1.54rem 0;
   font-weight: 200;
   ${px(14)}
+  ${mediaQuery(
+  'Tablet',
+  `margin: 2rem 0;
+          ${px(32)}
+      `
+)}
   ${mediaQuery(
   'Mobile',
   `
@@ -75,6 +87,17 @@ export const link = styled(Link)`
     transform: scaleX(1);
     transform-origin: left;
   }
+
+  ${mediaQuery(
+  'Tablet',
+  `
+          &:after {
+              transition: unset;
+          }
+  
+          ${px(24)}
+      `
+)}
 
   ${mediaQuery(
   'Mobile',

@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import * as Styled from './FormInput.styled'
+import { Validations, validateInput } from '@/utils/validation'
+import _ from 'lodash'
 
 type InputTypes =
   | 'text'
@@ -16,11 +18,12 @@ type Props = {
   type?: InputTypes
   name?: string
   id?: string
-  required?: boolean
   label?: string
   value?: string
-  onChange?: (event: React.FormEvent<HTMLInputElement>) => void
+  validations?: Validations
   accept?: string
+  onChange?: (event: React.FormEvent) => void
+  setError?: (err: boolean) => void
 }
 
 export const FormInput: FunctionComponent<Props> = ({
@@ -28,24 +31,51 @@ export const FormInput: FunctionComponent<Props> = ({
   accept,
   name,
   id,
-  required = false,
   label,
   value,
+  validations,
   onChange,
+  setError,
 }) => {
-  const getInput = () => {
+  const [hasError, setHasError] = useState<boolean>()
+  const [errorMessage, setErrorMessage] = useState<string>()
+
+  const handleInputChange = (event: React.FormEvent) => {
+    const value = _.get(event, 'target.value', '')
+
+    if (validations) {
+      const { hasError, errorMessage } = validateInput({
+        value,
+        validations: validations,
+      })
+
+      setHasError(hasError)
+      errorMessage && setErrorMessage(errorMessage)
+      setError && setError(hasError)
+    }
+  }
+
+  const getInput = (validations: Validations = {}) => {
     switch (type) {
       case 'textarea':
-        return <Styled.textarea name={name} id={id} />
+        return (
+          <Styled.textarea
+            onChange={onChange || handleInputChange}
+            name={name}
+            id={id}
+            rows={5}
+            required={validations.required}
+          />
+        )
       default:
         return (
           <Styled.input
             type={type}
             name={name}
             id={id}
-            required={required}
             value={value}
-            onChange={onChange}
+            required={validations.required}
+            onChange={onChange || handleInputChange}
             accept={accept}
           />
         )
@@ -55,8 +85,12 @@ export const FormInput: FunctionComponent<Props> = ({
   return (
     <>
       <Styled.formGroup>
-        <Styled.label>{label}</Styled.label>
-        {getInput()}
+        <Styled.label>
+          {label}
+          {validations?.required && <Styled.star> *</Styled.star>}
+        </Styled.label>
+        {getInput(validations)}
+        {hasError && <Styled.message>{errorMessage}</Styled.message>}
       </Styled.formGroup>
     </>
   )

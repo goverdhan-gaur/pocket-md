@@ -1,25 +1,21 @@
 import React, { FunctionComponent } from 'react'
-import * as Styled from './ArticleFilter.styled'
-import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
-import { ToggleFormModal } from '../ToggleFormModal/ToggleFormModal'
+import * as Styled from './ArticleFilters.styled'
 
-interface Props {
+type Props = {
   filters: string[]
   activeFilter: string
   onFilterClick: (id: string) => void
 }
 
-export const ArticleFilter: FunctionComponent<Props> = (props) => {
+export const ArticleFilters: FunctionComponent<Props> = (props) => {
   const { onFilterClick, filters, activeFilter } = props
   const showFilters = filters.length > 2
   const filterClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     const target = event.target as HTMLDivElement
     onFilterClick(target.id)
   }
-
   return (
-    <Styled.wrapper>
-      <ToggleFormModal />
+    <>
       <Styled.filterList showfilters={showFilters}>
         {filters.length > 2 &&
           filters.map((filter) => (
@@ -33,7 +29,6 @@ export const ArticleFilter: FunctionComponent<Props> = (props) => {
             </Styled.filterListItem>
           ))}
       </Styled.filterList>
-      <ThemeToggler />
-    </Styled.wrapper>
+    </>
   )
 }

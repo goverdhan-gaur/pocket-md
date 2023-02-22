@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import * as Styled from './Wrapper.styled'
-import { ArticleFilter } from '../ArticleFilter/ArticleFilter'
+import { Header } from '../Header/Header'
 import { ArticleList } from '../ArticleList/ArticleList'
 import { Article } from '@/Interfaces/article'
 import { ArticleType } from '@/Interfaces/types'
@@ -8,10 +8,12 @@ import { useLoadMore } from '@/hooks/useLoadMore'
 import { retrievePageArticles } from '@/queries/retrievePageArticles'
 import { getTypes } from '@/utils/getTypes'
 import { Loading } from '../Loading/Loading'
+import { ArticleFilters } from '../ArticleFilters/ArticleFilters'
 
 type Props = {
   articles: Article[]
   articleType: ArticleType
+  isModalOpen: boolean
 }
 
 const filterArticles = (articlesList: Article[], filter: string) => {
@@ -23,6 +25,7 @@ const filterArticles = (articlesList: Article[], filter: string) => {
 export const Wrapper: FunctionComponent<Props> = ({
   articles,
   articleType,
+  isModalOpen,
 }) => {
   const [articlesList, setArticlesList] = useState<Article[]>(articles)
   const filters: string[] = getTypes(articlesList)
@@ -70,12 +73,15 @@ export const Wrapper: FunctionComponent<Props> = ({
   }, [filter, articlesList]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Styled.wrapper>
-      <ArticleFilter
-        onFilterClick={setFilter}
-        filters={filters}
-        activeFilter={filter}
-      />
+    <Styled.wrapper disabled={isModalOpen}>
+      <Header />
+      {filters.length > 0 && (
+        <ArticleFilters
+          onFilterClick={setFilter}
+          filters={filters}
+          activeFilter={filter}
+        />
+      )}
       {filteredArticles.length ? (
         <ArticleList
           articles={filteredArticles}
