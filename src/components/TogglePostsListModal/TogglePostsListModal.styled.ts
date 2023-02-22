@@ -14,10 +14,8 @@ export const wrapper = styled.div`
         gap: 1.5rem;
     `
 )};
-  ${mediaQuery(
-  'Mobile',
-  `
-    gap: 2rem;
+${mediaQuery(
+  'Mobile', `
     `
 )};
 `
@@ -64,11 +62,26 @@ export const plusWrapper = styled.div`
 
 export const span = styled.span`
   display: block;
-  width: 10%;
-  height: 100%;
+  position: relative;
+  width: 80%;
+  right: 0;
+  height: 10%;
   background: ${({ theme }) => theme.background};
+  &::before {
+    content:"";
+    position: absolute;
+    left: -10px;
+    width: 20%;
+    height: 100%;
+    background: ${({ theme }) => theme.background};
+    width: 
+  }
   &:last-child {
     position: absolute;
-    transform: rotate(90deg);
+    top: 10%;
+  }  
+  &:first-child {
+    position: absolute;
+    bottom: 10%;
   }
 `

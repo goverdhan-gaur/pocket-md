@@ -7,4 +7,4 @@ export default {
   component: FormModal,
 } as ComponentMeta<typeof FormModal>
 
-export const Primary = () => <FormModal title="test" />
+export const Primary = () => <FormModal />

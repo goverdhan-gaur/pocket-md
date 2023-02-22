@@ -2,6 +2,10 @@ import { px } from '@/mixins/getRemFontSize'
 import { mediaQuery } from '@/mixins/mediaQuery'
 import styled from 'styled-components'
 
+interface filterListItemProps {
+  isActive: boolean
+}
+
 interface filterListProps {
   showfilters: boolean
 }
@@ -46,9 +50,6 @@ export const filterList = styled.ul<filterListProps>`
 
 filterList.defaultProps = {
   showfilters: false,
-}
-interface filterListItemProps {
-  isActive: boolean
 }
 
 export const filterListItem = styled.li<filterListItemProps>`

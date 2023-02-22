@@ -1,8 +1,10 @@
 const colors = {
   beige: '#fbf6ef',
+  beige50: '#fbf6ef50',
   khaki: '#dbcfbd',
   green: '#71816d',
   black: '#0c0a08',
+  black50: '#0c0a0850',
   pink: '#c5304b',
 }
 
@@ -14,6 +16,8 @@ export const lightTheme = {
   invertColor: colors.beige,
   highlightColor: colors.green,
   invertHighlightColor: colors.pink,
+  backgroundTransparent: colors.black50,
+  white: colors.beige,
 }
 
 export const darkTheme = {
@@ -23,5 +27,7 @@ export const darkTheme = {
   background: colors.black,
   color: colors.beige,
   highlightColor: colors.green,
-  invertHighlightColor: colors.green,
+  invertHighlightColor: colors.pink,
+  backgroundTransparent: colors.beige50,
+  white: colors.beige,
 }

@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
@@ -14,4 +15,8 @@ body {
   font-family: 'Roboto Slab', serif;
   /* background-color: rgb(236, 229, 215); */
   scroll-behavior: smooth;
+}
+
+input {
+  font-family: 'Roboto Slab', serif;
 }
