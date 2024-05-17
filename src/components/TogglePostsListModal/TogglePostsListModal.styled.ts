@@ -1,4 +1,3 @@
-import { px } from '@/mixins/getRemFontSize'
 import { mediaQuery } from '@/mixins/mediaQuery'
 import { FaBarsStaggered } from 'react-icons/fa6'
 import styled from 'styled-components'

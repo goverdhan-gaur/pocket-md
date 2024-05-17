@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
       '(prefers-color-scheme: light)'
     ).matches
     setTheme(prefersDarkMode ? 'dark' : 'light')
-  }, [])
+  }, [setTheme])
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>

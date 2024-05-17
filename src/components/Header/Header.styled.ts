@@ -1,5 +1,4 @@
 
-import { mediaQuery } from '@/mixins/mediaQuery'
 import styled from 'styled-components'
 
 export const wrapper = styled.div`

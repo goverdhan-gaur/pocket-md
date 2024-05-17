@@ -1,13 +1,18 @@
 import { px } from '@/mixins/getRemFontSize';
 import { mediaQuery } from '@/mixins/mediaQuery';
+import { ReactNode } from 'react';
 import styled from 'styled-components'
 
 interface filterListItemProps {
-  isActive: boolean
+  isActive: boolean;
+  id: string;
+  onClick: React.MouseEvent<HTMLLIElement>;
+  children?: ReactNode;
 }
 
 interface filterListProps {
-  showfilters: boolean
+  showfilters: boolean;
+  children?: ReactNode;
 }
 
 export const filterList = styled.ul<filterListProps>`
@@ -24,6 +29,7 @@ export const filterList = styled.ul<filterListProps>`
 
 filterList.defaultProps = {
   showfilters: false,
+
 }
 
 export const filterListItem = styled.li<filterListItemProps>`

@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import * as Styled from './ImageComponent.styled'
 import { useImageUrls } from '@/hooks/useImageUrl'
 import { ArticleType } from '@/Interfaces/types'
-import { useInView } from 'react-intersection-observer'
 interface ImageProps {
   url: string
   alt?: string
@@ -25,7 +24,7 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
       setImage(imageUrls)
     }
     isLoaded == false && setIsLoaded(true)
-  }, [articleType, imageUrls, url])
+  }, [articleType, imageUrls, url, isLoaded])
 
   return (
     <Styled.imageContainer >

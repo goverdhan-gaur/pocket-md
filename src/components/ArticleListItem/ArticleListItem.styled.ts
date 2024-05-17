@@ -11,7 +11,7 @@ export const wrapper = styled(motion.div)`
   display: grid;
   grid-template-columns: 0.5fr 2fr;
   gap: 2rem;
-  ${mediaQuery('Tablet', `padding: 3rem 0 3rem;`)}
+  ${mediaQuery('Tablet', 'padding: 3rem 0 3rem;')}
   ${mediaQuery('Mobile', ` 
     padding: 5rem 0 5rem;
     grid-template-columns: 1fr;

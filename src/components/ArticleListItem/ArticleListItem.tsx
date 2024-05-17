@@ -4,7 +4,6 @@ import { ImageComponent } from '../ImageComponent/ImageComponent'
 import { Article } from '@/Interfaces/article'
 import { ArticleType } from '@/Interfaces/types'
 import { useInView } from 'react-intersection-observer'
-import { ScrollInstruction } from '../ScrollInstruction/ScrollInstruction'
 interface Props {
   article: Article
   index: number

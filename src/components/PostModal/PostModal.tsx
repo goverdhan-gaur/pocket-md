@@ -3,7 +3,7 @@ import * as Styled from './PostModal.styled'
 import { FormData, useModalStore } from '@/store/modal'
 import { useFirebase } from '@/hooks/useFirebase'
 import { PostList } from '../PostList/PostList'
-import { FaWindowClose } from "react-icons/fa";
+import { FaWindowClose } from 'react-icons/fa';
 type Props = {
   //
 }
@@ -27,7 +27,7 @@ export const PostModal: FunctionComponent<Props> = () => {
           <FaWindowClose />
         </Styled.close>
         <Styled.formHeading>Posts</Styled.formHeading>
-        {fetchedPosts ? <PostList posts={posts}></PostList> : "No Posts Available"}
+        {fetchedPosts ? <PostList posts={posts}></PostList> : 'No Posts Available'}
       </Styled.wrapper>
     </>
   )

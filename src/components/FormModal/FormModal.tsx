@@ -8,7 +8,6 @@ import _ from 'lodash'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
 import { UploadedImage } from '../UploadedImage/UploadedImage'
 import { Variants, useAnimationControls } from 'framer-motion'
-import { GrClose } from 'react-icons/gr'
 import { FaWindowClose } from 'react-icons/fa'
 
 type Props = {
