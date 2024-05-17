@@ -76,7 +76,15 @@ export const message = styled.span`
 )}
 `
 
-export const textarea = styled.textarea`
+interface TextAreaProps {
+  onChange: React.FormEventHandler<HTMLTextAreaElement>;
+  name?: string;
+  id?: string;
+  rows: number;
+  required?: boolean;
+}
+
+export const textarea = styled.textarea<TextAreaProps>`
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -100,7 +108,17 @@ ${px(60)}
 )}
 `
 
-export const input = styled.input`
+interface InputProps {
+  type: 'number' | 'text' | 'url' | 'date' | 'file' | 'submit';
+  name?: string;
+  id?: string;
+  value?: string;
+  required?: boolean;
+  onChange: React.FormEventHandler<HTMLInputElement>;
+  accept?: string;
+}
+
+export const input = styled.input<InputProps>`
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   border-radius: 0;

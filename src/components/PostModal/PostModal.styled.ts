@@ -59,8 +59,10 @@ export const form = styled.form<{ enctype: string }>`
   `
 )}
 `
-
-export const Backdrop = styled.div`
+interface ButtonProps {
+  onClick: () => void;
+}
+export const Backdrop = styled.div<ButtonProps>`
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -69,8 +71,11 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 `
-
-export const close = styled.span`
+interface ButtonProps {
+  onClick: () => void;
+  children?: React.ReactNode;
+}
+export const close = styled.span<ButtonProps>`
   cursor: pointer;
   position: absolute;
   ${px(25)};

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 interface filterListItemProps {
   isActive: boolean;
   id: string;
-  onClick: React.MouseEvent<HTMLLIElement>;
+  onClick: React.MouseEventHandler<HTMLLIElement>;
   children?: ReactNode;
 }
 

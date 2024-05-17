@@ -1,8 +1,9 @@
 import { mediaQuery } from '@/mixins/mediaQuery'
 import { FaBarsStaggered } from 'react-icons/fa6'
 import styled from 'styled-components'
+import { ComponentProps } from '../ToggleFormModal/ToggleFormModal.styled'
 
-export const wrapper = styled.div`
+export const wrapper = styled.div<ComponentProps>`
   position: relative;
   display: flex;
   gap: 10px;

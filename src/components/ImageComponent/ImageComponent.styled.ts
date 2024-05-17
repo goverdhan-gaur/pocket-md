@@ -14,7 +14,12 @@ export const imageContainer = styled.div`
   ${aspectRatioContainer('4:3')}
   background: #ffffff30
 `
-export const image = styled.img`
+interface ImageProps {
+  loading: string;
+  src: string;
+  alt: string
+}
+export const image = styled.img<ImageProps>`
   height: 100%;
   margin: auto;
   width: 100%;

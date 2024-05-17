@@ -1,7 +1,13 @@
 import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 import styled from 'styled-components'
-
-export const wrapper = styled.div`
+interface ComponentProps {
+    key: number;
+    onClick: () => void;
+    children?: ReactNode
+    // Add other props as needed
+}
+export const wrapper = styled.div<ComponentProps>`
     cursor: pointer;
     z-index:99;
   `;

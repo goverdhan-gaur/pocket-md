@@ -1,12 +1,14 @@
 import { px } from '@/mixins/getRemFontSize';
 import { mediaQuery } from '@/mixins/mediaQuery';
 import styled from 'styled-components'
-
+interface ImageProps {
+    src: string
+}
 export const wrapper = styled.div`width: 100%;
 display: flex;
 justify-content: center`;
 
-export const image = styled.img`
+export const image = styled.img<ImageProps>`
 width: 20rem;
 max-width: 200px;
 margin: 0 auto;
@@ -32,7 +34,11 @@ export const label = styled.p`
   `
 )}
 `
-export const delIcon = styled.div`
+
+interface delIconProps {
+    onClick: () => void
+}
+export const delIcon = styled.div<delIconProps>`
     position:absolute;
     background: red;
     border-radius: 10px;
