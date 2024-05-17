@@ -9,7 +9,7 @@ export const wrapper = styled(motion.div)`
   padding: 1.5rem 0 1.5rem;
   border-bottom: ${props => `1px solid ${props.theme.invertBackground}`};
   display: grid;
-  grid-template-columns: 0.5fr 2fr;
+  grid-template-columns: 0.7fr 2fr;
   gap: 2rem;
   ${mediaQuery('Tablet', 'padding: 3rem 0 3rem;')}
   ${mediaQuery('Mobile', ` 
