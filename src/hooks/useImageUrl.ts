@@ -4,7 +4,7 @@ import { checkIfImageExists } from '@/utils/checkIfImageExists';
 import { DUMMY_IMAGE_URL } from '@/data/DUMMY_DATA';
 import { getRandomUrl } from '@/utils/getRandomFromArray';
 
-export function useImageUrls(url: string, isVisible: boolean) {
+export function useImageUrls(url: string) {
     const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
     const fetchImageUrls = useCallback(async () => {
@@ -15,12 +15,18 @@ export function useImageUrls(url: string, isVisible: boolean) {
         }
 
         try {
-            const data = await fetch(`/api/getImage?url=${encodeURI(url)}`).then((res) => res.json());
+            // console.log(encodeURI(url))
+            const data = await fetch(`/api/getImage?url=${encodeURI(url)}`)
+            .then((res) => {
+                return res.ok ? res.json() : getRandomUrl(DUMMY_IMAGE_URL)
+            });
             if (isUrl(data)) {
+
                 checkIfImageExists(data, (exists: boolean) => {
                     setImageUrl(exists ? data : getRandomUrl(DUMMY_IMAGE_URL));
                 });
             }
+            
         } catch (err) {
             console.log(err)
         }
@@ -28,10 +34,10 @@ export function useImageUrls(url: string, isVisible: boolean) {
     }, [url]);
 
     useEffect(() => {
-        if (!imageUrl && isVisible) {
+        if (!imageUrl) {
             fetchImageUrls();
         }
-    }, [fetchImageUrls, imageUrl, isVisible]);
+    }, [fetchImageUrls, imageUrl]);
 
     return imageUrl;
 }

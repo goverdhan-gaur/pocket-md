@@ -18,7 +18,7 @@ export default function Home(props: HomeProps) {
     <>
       <div>
         <Head>
-          <title>Pocket MD</title>
+          <title>News Blog</title>
         </Head>
       </div>
       {isFormOpen && <FormModal />}

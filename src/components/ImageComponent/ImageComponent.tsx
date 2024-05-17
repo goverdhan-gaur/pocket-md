@@ -14,9 +14,9 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
   articleType,
   alt,
 }) => {
-  const [ref, inView] = useInView()
   const [image, setImage] = useState<string>('')
-  const imageUrls = useImageUrls(url, inView)
+  const imageUrls = useImageUrls(url)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   useEffect(() => {
     if (articleType === 'internal') {
@@ -24,12 +24,13 @@ export const ImageComponent: FunctionComponent<ImageProps> = ({
     } else if (imageUrls) {
       setImage(imageUrls)
     }
+    isLoaded == false && setIsLoaded(true)
   }, [articleType, imageUrls, url])
 
   return (
-    <Styled.imageContainer ref={ref}>
-      {image && inView ? (
-        <Styled.image src={image} alt={alt || 'Image'} />
+    <Styled.imageContainer >
+      {image && isLoaded ? (
+        <Styled.image loading="lazy" src={image} alt={alt || 'Image'} />
       ) : (
         <Styled.innerContainer>
           <Styled.loading />

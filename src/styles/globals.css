@@ -17,6 +17,6 @@ body {
   scroll-behavior: smooth;
 }
 
-input {
+input, textarea{
   font-family: 'Roboto Slab', serif;
 }

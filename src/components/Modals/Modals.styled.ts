@@ -2,8 +2,13 @@ import { mediaQuery } from '@/mixins/mediaQuery';
 import styled from 'styled-components'
 
 export const wrapper = styled.div`
+    font-size:20px;
     display: flex;
-    gap: 3rem;
-    ${mediaQuery('Tablet', '  gap: 4rem;')}
-    ${mediaQuery('Mobile', '  gap: 6rem;')}
+    gap: 50px;
+    ${mediaQuery(
+    'Mobile',
+    ` 
+        gap: 20px;
+          `
+)};
 `;

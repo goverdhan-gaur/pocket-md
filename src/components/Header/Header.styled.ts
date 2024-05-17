@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 export const wrapper = styled.div`
   position: sticky;
-  display: flex;
-  padding: 1.5rem;
+  width:100%;
+  padding: 20px 0;
   justify-content: space-between;
   align-items: center;
   top: 0;
@@ -14,12 +14,18 @@ export const wrapper = styled.div`
     return props.theme.invertBackground
   }};
   backdrop-filter: blur(10px);
-
-  ${mediaQuery('Tablet', `
-    padding: 2.5rem;
-  `)}
-  ${mediaQuery('Mobile', `
-    padding: 3rem;
-  `)}
 `
 
+export const nav = styled.div`
+
+  display: flex;
+  width:100%;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  z-index: 9;
+  background-color: ${(props) => {
+    return props.theme.invertBackground
+  }};
+  backdrop-filter: blur(10px);
+`

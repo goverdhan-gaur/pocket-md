@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import * as Styled from './FormModal.styled'
+import * as Modal from '../PostModal/PostModal.styled'
 import { useModalStore } from '@/store/modal'
 import { FormInput } from '../FormInput/FormInput'
 import { useFirebase } from '@/hooks/useFirebase'
@@ -7,6 +8,8 @@ import _ from 'lodash'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
 import { UploadedImage } from '../UploadedImage/UploadedImage'
 import { Variants, useAnimationControls } from 'framer-motion'
+import { GrClose } from 'react-icons/gr'
+import { FaWindowClose } from 'react-icons/fa'
 
 type Props = {
   //
@@ -105,8 +108,8 @@ export const FormModal: FunctionComponent<Props> = () => {
   return (
     <>
       <Styled.Backdrop onClick={closeModal} />
-
       <Styled.wrapper variants={variants} initial="initial" animate={controls}>
+        <Modal.close onClick={closeModal} ><FaWindowClose /></Modal.close>
         <Styled.formHeading>Add Post</Styled.formHeading>
         <Styled.form
           onSubmit={handleFormSubmission}

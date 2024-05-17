@@ -9,6 +9,7 @@ import { retrievePageArticles } from '@/queries/retrievePageArticles'
 import { getTypes } from '@/utils/getTypes'
 import { Loading } from '../Loading/Loading'
 import { ArticleFilters } from '../ArticleFilters/ArticleFilters'
+import { Container } from '../Container/Container'
 
 type Props = {
   articles: Article[]
@@ -29,6 +30,7 @@ export const Wrapper: FunctionComponent<Props> = ({
 }) => {
   const [articlesList, setArticlesList] = useState<Article[]>(articles)
   const filters: string[] = getTypes(articlesList)
+
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([])
 
   const [filter, setFilter] = useState<string>('All')
@@ -37,9 +39,9 @@ export const Wrapper: FunctionComponent<Props> = ({
   const loadMoreObj =
     articleType === 'internal'
       ? {
-          query: retrievePageArticles,
-          useApollo: true,
-        }
+        query: retrievePageArticles,
+        useApollo: true,
+      }
       : { query: retrievePageArticles }
 
   const { data, loading } = useLoadMore(loadMoreObj)
@@ -82,15 +84,17 @@ export const Wrapper: FunctionComponent<Props> = ({
           activeFilter={filter}
         />
       )}
-      {filteredArticles.length ? (
-        <ArticleList
-          articles={filteredArticles}
-          hasLoaded={hasLoaded}
-          articleType={articleType}
-        />
-      ) : (
-        <Loading />
-      )}
+      <Container>
+        {filteredArticles.length ? (
+          <ArticleList
+            articles={filteredArticles}
+            hasLoaded={hasLoaded}
+            articleType={articleType}
+          />
+        ) : (
+          <Loading />
+        )}
+      </Container>
     </Styled.wrapper>
   )
 }

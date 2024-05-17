@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { Loading } from '../Loading/Loading';
 
 export const wrapper = styled(motion.div)`
-    padding: 1rem 6rem; 
-    margin-bottom: 10rem;
     position: relative;
 `;
 

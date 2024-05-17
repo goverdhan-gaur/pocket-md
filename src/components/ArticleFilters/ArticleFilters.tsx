@@ -9,7 +9,7 @@ type Props = {
 
 export const ArticleFilters: FunctionComponent<Props> = (props) => {
   const { onFilterClick, filters, activeFilter } = props
-  const showFilters = filters.length > 2
+  const showFilters = filters.length > 1
   const filterClickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     const target = event.target as HTMLDivElement
     onFilterClick(target.id)
@@ -17,17 +17,16 @@ export const ArticleFilters: FunctionComponent<Props> = (props) => {
   return (
     <>
       <Styled.filterList showfilters={showFilters}>
-        {filters.length > 2 &&
-          filters.map((filter) => (
-            <Styled.filterListItem
-              key={filter}
-              id={filter}
-              onClick={filterClickHandler}
-              isActive={activeFilter === filter}
-            >
-              {filter}
-            </Styled.filterListItem>
-          ))}
+        {filters.map((filter) => (
+          <Styled.filterListItem
+            key={filter}
+            id={filter}
+            onClick={filterClickHandler}
+            isActive={activeFilter === filter}
+          >
+            {filter}
+          </Styled.filterListItem>
+        ))}
       </Styled.filterList>
     </>
   )

@@ -4,6 +4,7 @@ import { ImageComponent } from '../ImageComponent/ImageComponent'
 import { Article } from '@/Interfaces/article'
 import { ArticleType } from '@/Interfaces/types'
 import { useInView } from 'react-intersection-observer'
+import { ScrollInstruction } from '../ScrollInstruction/ScrollInstruction'
 interface Props {
   article: Article
   index: number
@@ -14,7 +15,7 @@ export const ArticleListItem: FunctionComponent<Props> = memo((props) => {
   const { article, articleType } = props
   const url = article.url
   const [ref, inView] = useInView({
-    threshold: 0.1,
+    threshold: 0,
   })
 
   const squareVariants = {
@@ -27,24 +28,26 @@ export const ArticleListItem: FunctionComponent<Props> = memo((props) => {
   }
 
   return (
-    <Styled.wrapper
-      ref={ref}
-      variants={squareVariants}
-      initial="hidden"
-      animate={inView && 'visible'}
-    >
-      <ImageComponent url={url} alt={article.title} articleType={articleType} />
-      <Styled.meta>
-        <Styled.title>{article.title}</Styled.title>
-        <Styled.description>{article.text}</Styled.description>
-        <Styled.link
-          href={article.url ? article.url : 'https://www.google.com/404'}
-          target="_blank"
-        >
-          Read the article
-        </Styled.link>
-      </Styled.meta>
-    </Styled.wrapper>
+    <>
+      <Styled.wrapper
+        ref={ref}
+        variants={squareVariants}
+        initial="hidden"
+        animate={inView && 'visible'}
+      >
+        <ImageComponent url={url} alt={article.title} articleType={articleType} />
+        <Styled.meta>
+          <Styled.title>{article.title}</Styled.title>
+          <Styled.description>{article.text}</Styled.description>
+          <Styled.link
+            href={article.url ? article.url : 'https://www.google.com/404'}
+            target="_blank"
+          >
+            Read the article
+          </Styled.link>
+        </Styled.meta>
+      </Styled.wrapper >
+    </>
   )
 })
 

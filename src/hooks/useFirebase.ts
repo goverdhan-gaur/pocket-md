@@ -53,11 +53,7 @@ export const useFirebase = () => {
     const getPosts = () => {
         const dbRef = databaseRef(database)
         get(child(dbRef, 'posts')).then((snapshot) => {
-            if (snapshot.exists()) {
-                setFetchedPosts(snapshot.val());
-            } else {
-                console.log('No data available');
-            }
+            setFetchedPosts(snapshot.val());
         }).catch((error) => {
             console.error(error);
         });

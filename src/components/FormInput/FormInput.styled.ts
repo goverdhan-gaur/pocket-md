@@ -13,8 +13,8 @@ export const formGroup = styled.div`
     margin-bottom: 0;
   }
   ${mediaQuery(
-    'Mobile',
-    `
+  'Mobile',
+  `
     margin: 2rem 0;
 `
 )}
@@ -24,15 +24,15 @@ export const label = styled.label`
   position: relative;
   ${px(14)};
   ${mediaQuery(
-    'Tablet',
-    `
+  'Tablet',
+  `
     ${px(30)}
   `
 )};
   ${mediaQuery(
-    'Mobile',
-    `
-${px(40)}
+  'Mobile',
+  `
+${px(60)}
 `
 )}
 `
@@ -44,15 +44,15 @@ export const star = styled.span`
   top: 0;
   ${px(12)};
   ${mediaQuery(
-    'Tablet',
-    `
+  'Tablet',
+  `
     ${px(26)}
   `
 )};
   ${mediaQuery(
-    'Mobile',
-    `
-${px(38)}
+  'Mobile',
+  `
+${px(48)}
 `
 )}
 `
@@ -63,15 +63,15 @@ export const message = styled.span`
   color: red;
   ${px(12)}
   ${mediaQuery(
-    'Tablet',
-    `
+  'Tablet',
+  `
     ${px(20)}
   `
 )};
   ${mediaQuery(
-    'Mobile',
-    `
-    ${px(40)}
+  'Mobile',
+  `
+    ${px(60)}
   `
 )}
 `
@@ -87,15 +87,15 @@ export const textarea = styled.textarea`
   max-height: 100px;
   ${px(14)};
   ${mediaQuery(
-    'Tablet',
-    `
+  'Tablet',
+  `
     ${px(30)}
   `
 )};
   ${mediaQuery(
-    'Mobile',
-    `
-${px(40)}
+  'Mobile',
+  `
+${px(60)}
 `
 )}
 `
@@ -110,15 +110,15 @@ export const input = styled.input`
   border: 1px solid;
   ${px(14)};
   ${mediaQuery(
-    'Tablet',
-    `
-    ${px(30)}
+  'Tablet',
+  `
+    ${px(40)}
   `
 )};
   ${mediaQuery(
-    'Mobile',
-    `
-${px(40)}
+  'Mobile',
+  `
+${px(60)}
 `
 )}
   &[type="submit"] {
@@ -126,5 +126,9 @@ ${px(40)}
     color: ${({ theme }) => theme.white};
     border: none;
     outline: none;
+    cursor: pointer;
+    &:hover {
+      background: ${({ theme }) => `${theme.invertHighlightColor}ee`};
+    }
   }
 `

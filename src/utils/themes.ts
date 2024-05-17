@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   beige: '#fbf6ef',
   beige50: '#fbf6ef50',
   khaki: '#dbcfbd',
@@ -14,8 +14,8 @@ export const lightTheme = {
   color: colors.black,
   invertBackground: colors.black,
   invertColor: colors.beige,
-  highlightColor: colors.green,
-  invertHighlightColor: colors.pink,
+  highlightColor: colors.pink,
+  invertHighlightColor: colors.green,
   backgroundTransparent: colors.black50,
   white: colors.beige,
 }

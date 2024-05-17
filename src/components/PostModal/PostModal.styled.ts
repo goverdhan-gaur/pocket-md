@@ -1,5 +1,6 @@
 import { px } from '@/mixins/getRemFontSize'
 import { mediaQuery } from '@/mixins/mediaQuery'
+import { colors } from '@/utils/themes'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -25,6 +26,8 @@ export const wrapper = styled(motion.div)`
 )}
 `
 export const formHeading = styled.h1`
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
   ${mediaQuery(
   'Tablet',
   `
@@ -70,9 +73,9 @@ export const Backdrop = styled.div`
 export const close = styled.span`
   cursor: pointer;
   position: absolute;
-  ${px(20)};
-  right: 1rem;
-  top: 1rem;
+  ${px(25)};
+  right: 1.5rem;
+  top: 1.5rem;
   ${mediaQuery(
   'Tablet',
   `
@@ -89,4 +92,8 @@ export const close = styled.span`
   top: 3rem;
 `
 )}
+  transition: color 0.15s;
+  &:hover {
+    color:${colors.pink};
+  }
 `

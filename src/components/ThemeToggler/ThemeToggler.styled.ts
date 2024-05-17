@@ -4,32 +4,19 @@ import styled from 'styled-components'
 
 export const wrapper = styled.div`
     cursor: pointer;
-    right: 2rem;
     z-index:99;
-    ${mediaQuery('Mobile', `
-        right: 3rem;
-    `)}
   `;
 export const toggleBackground = styled(motion.div)`
     position: relative;
-    width: 4rem;
+    width: 50px;
     background: ${({ theme }) => theme.background};
-    height: 2rem;
-    border-radius: 2rem;
-    ${mediaQuery('Mobile', `
-        width: 8rem;
-        height: 4rem;
-    `)}
+    height: 25px;
+    border-radius: 25px;
 `
 export const toggleIcon = styled(motion.div)`
-    width: 1.5rem;
-    height: 1.5rem;
-    top: 0.25rem;
+    width: 17.5px;
+    height: 17.5px;
+    top: 3.75px;
     background: ${({ theme }) => theme.invertBackground};
     border-radius: 50%;
-    ${mediaQuery('Mobile', `
-        width: 3rem;
-        height: 3rem;
-        top: 0.5rem;
-    `)}
 `

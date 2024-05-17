@@ -7,10 +7,7 @@ export const ToggleFormModal: FunctionComponent = () => {
 
   return (
     <Styled.wrapper onClick={() => openModal(modalType.Form)}>
-      <Styled.plusWrapper>
-        <Styled.span />
-        <Styled.span />
-      </Styled.plusWrapper>
+      <Styled.iconWrapper />
       <Styled.label>Add Post</Styled.label>
     </Styled.wrapper>
   )

@@ -7,11 +7,7 @@ export const TogglePostsListModal: FunctionComponent = () => {
 
   return (
     <Styled.wrapper onClick={() => openModal(modalType.Posts)}>
-      <Styled.plusWrapper>
-        <Styled.span />
-        <Styled.span />
-        <Styled.span />
-      </Styled.plusWrapper>
+      <Styled.iconWrapper />
       <Styled.label>View Posts</Styled.label>
     </Styled.wrapper>
   )
